@@ -18,6 +18,7 @@
 //Clase padre
 
 #include "ros/ros.h"
+#include "darknet_ros_msgs/BoundingBoxes.h"
 
 namespace visual_behavior
 {
@@ -27,7 +28,7 @@ class Follow_Ball
 public:
   Follow_Ball();
 
-  void Callback();
+  void Callback(const darknet_ros_msgs::BoundingBoxes::ConstPtr& msg);
   void step();
 
 protected:

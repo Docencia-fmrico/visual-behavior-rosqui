@@ -14,6 +14,7 @@
 
 #include "visual_behavior/follow_ball.h"
 #include "geometry_msgs/Twist.h"
+#include "darknet_ros_msgs/BoundingBoxes.h"
 
 #include "ros/ros.h"
 
@@ -23,12 +24,12 @@ namespace visual_behavior
 // Constructor
 Follow_Ball::Follow_Ball()
 {
-  /* sub_ = n_.subscribe("/darknet_ros/bouding_boxes", 1, &Follow_Ball::Callback, this);
-  pub_ = n_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity",1); */
+  sub_ = n_.subscribe("/darknet_ros/bouding_boxes", 1, &Follow_Ball::Callback, this);
+  pub_ = n_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity",1);
 }
 
 void
-Follow_Ball::Callback()
+Follow_Ball::Callback(const darknet_ros_msgs::BoundingBoxes::ConstPtr& msg)
 {
    ROS_INFO("CALLBACK\n");
 }
