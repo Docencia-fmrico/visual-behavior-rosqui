@@ -9,13 +9,17 @@
                 </Inverter>
                 <Action ID="turn"/>
             </Fallback>
-            <Action ID="follow_person"/>
+            <ReactiveSequence>
+                <Action ID="percive_person"/>
+                <Action ID="follow_person"/>
+            </ReactiveSequence>
         </ReactiveSequence>
     </BehaviorTree>
     <!-- ////////// -->
     <TreeNodesModel>
         <Condition ID="detect_person"/>
         <Action ID="follow_person"/>
+        <Action ID="percive_person"/>
         <Action ID="turn"/>
     </TreeNodesModel>
     <!-- ////////// -->
