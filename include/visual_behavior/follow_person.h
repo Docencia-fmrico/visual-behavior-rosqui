@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef FOLLOW_BALL_H
-#define FOLLOW_BALL_H
+#ifndef FOLLOW_PERSON_H
+#define FOLLOW_PERSON_H
 
 //Clase padre
 
@@ -23,10 +23,10 @@
 namespace visual_behavior
 {
 
-class Follow_Ball
+class Follow_Person
 {
 public:
-  Follow_Ball();
+  Follow_Person();
 
   void Callback(const darknet_ros_msgs::BoundingBoxes::ConstPtr& msg);
   void step();
@@ -40,4 +40,4 @@ protected:
 
 }  // namespace visual_behavior
 
-#endif  // FOLLOW_BALL_H
+#endif  // FOLLOW_PERSON_H

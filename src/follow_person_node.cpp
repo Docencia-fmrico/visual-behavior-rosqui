@@ -12,32 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "visual_behavior/follow_ball.h"
-#include "geometry_msgs/Twist.h"
-#include "darknet_ros_msgs/BoundingBoxes.h"
+#include "visual_behavior/follow_person.h"
 
 #include "ros/ros.h"
 
-namespace visual_behavior
+int main(int argc, char **argv)
 {
+  ros::init(argc, argv, "visual_behavor");
 
-// Constructor
-Follow_Ball::Follow_Ball()
-{
-  sub_ = n_.subscribe("/darknet_ros/bouding_boxes", 1, &Follow_Ball::Callback, this);
-  pub_ = n_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity",1);
+  visual_behavior::Follow_Person visual_behavior;
+
+  ros::Rate loop_rate(20);
+  while (ros::ok())
+  {
+    visual_behavior.step();
+
+    ros::spinOnce();
+    loop_rate.sleep();
+  }
+
+  return 0;
 }
-
-void
-Follow_Ball::Callback(const darknet_ros_msgs::BoundingBoxes::ConstPtr& msg)
-{
-   ROS_INFO("CALLBACK\n");
-}
-
-void
-Follow_Ball::step()
-{
-    ROS_INFO("STEP\n");
-}
-
-}  // namespace visual_behavior

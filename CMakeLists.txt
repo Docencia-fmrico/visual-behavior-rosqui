@@ -20,14 +20,14 @@ include_directories(
 )
 
 add_library(${PROJECT_NAME}
-  src/visual_behavior/follow_ball.cpp
+  src/visual_behavior/follow_person.cpp
 )
 
-add_executable(follow_ball_node src/follow_ball_node.cpp)
-target_link_libraries(follow_ball_node ${catkin_LIBRARIES} ${PROJECT_NAME})
+add_executable(follow_person_node src/follow_person_node.cpp)
+target_link_libraries(follow_person_node ${catkin_LIBRARIES} ${PROJECT_NAME})
 
 roslint_cpp(
- src/follow_ball_node.cpp
- src/visual_behavior/follow_ball.cpp
- include/follow_ball.h
+ src/follow_person_node.cpp
+ src/visual_behavior/follow_person.cpp
+ include/follow_person.h
 )
