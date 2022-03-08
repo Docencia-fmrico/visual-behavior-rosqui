@@ -2,5 +2,11 @@
 <launch>
 
   <node pkg="visual_behavior" type="follow_ball_node" name="Follow_Ball" output="screen"/>
+  <node pkg="usb_cam" type="usb_cam_node" name="usb_cam"/>
+  <node pkg="cameras_cpp" type="nodo_camera" name="cameras_cpp"/>
+
+   <include file="$(find darknet_ros)/launch/darknet_ros.launch">
+    <arg name="image" value="/usb_cam/image_raw/"/>
+  </include>
 
 </launch>
