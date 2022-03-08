@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <node pkg="visual_behavior" type="follow_ball_node" name="Follow_Ball" output="screen"/>
+
+</launch>
