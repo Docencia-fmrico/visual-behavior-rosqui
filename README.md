@@ -15,6 +15,8 @@ First of all we have done a behaviour tree called **follow person**. As you can 
 We used darknet ros filtered just only for people 
 
 <details><summary><b>Instalation</b></summary>
+   
+</details>
     
 <details><summary><b>Commands Used</b></summary>
 (See alvaro’s PDF and add  all aplications used “Darknet Ros and all packages you need to download)
