@@ -20,9 +20,12 @@ We used darknet ros filtered just only for people
     
 <details><summary><b>Commands Used</b></summary>
 (See alvaro’s PDF and add  all aplications used “Darknet Ros and all packages you need to download)
+    
+</details>
 
 <details><summary><b>Darknet Ros Modificated</b></summary>
 (We edited all yamls and we only included “person” in detection clases names) *add snippet*
+</details>
 
 
 ## FOLLOW BALL
