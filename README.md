@@ -1,7 +1,8 @@
 <p align="center"><a href="https://www.youtube.com/channel/UC4Loc3tyy1vvGsMoBC5KCSw" target="_blank">
-    <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/rosquilogo.jpeg">
+    <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/rosquilogo.jpeg"
+     alt="Kobuki Image" width="100" height="300">
 </a></p>
-Do not pay attention to this temporal logo
+
 <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/kobuki.jpg" align="right"
      alt="Kobuki Image" width="140" height="198">
      
