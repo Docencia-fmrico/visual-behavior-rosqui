@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<root main_tree_to_execute="BehaviorTree">
+    <!-- ////////// -->
+    <BehaviorTree ID="BehaviorTree">
+        <ReactiveSequence>
+            <Fallback>
+                <Inverter>
+                    <Condition ID="FollowPerson"/>
+                </Inverter>
+                <Action ID="DetectPerson"/>
+            </Fallback>
+            <ReactiveSequence>
+                <Action ID="Turn"/>
+                <Action ID="PercievePerson"/>
+            </ReactiveSequence>
+        </ReactiveSequence>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <TreeNodesModel>
+        <Condition ID="FollowPerson"/>
+        <Action ID="PercievePerson"/>
+        <Action ID="Turn"/>
+        <Action ID="DetectPerson"/>
+    </TreeNodesModel>
+    <!-- ////////// -->
+</root>
