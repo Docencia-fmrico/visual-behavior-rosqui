@@ -1,6 +1,6 @@
 <p align="center"><a href="https://www.youtube.com/channel/UC4Loc3tyy1vvGsMoBC5KCSw" target="_blank">
     <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/rosquilogo.jpeg"
-     alt="Kobuki Image" width="300" height="500">
+     alt="Kobuki Image" width="800" height="100">
 </a></p>
 
 <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/kobuki.jpg" align="right"
