@@ -35,6 +35,8 @@ class PercievePerson : public BT::ActionNodeBase
 
   private:
     int counter_;
+    message_filters::Subscriber<sensor_msgs::Image> image_depth_sub;
+    message_filters::Subscriber<darknet_ros_msgs::BoundingBoxes> bbx_sub;
 };
 
 }  // namespace visual_behavior
