@@ -1,4 +1,4 @@
-// Copyright 2022 Intelligent Robotics Lab
+// Copyright 2019 Intelligent Robotics Lab
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,20 +12,48 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "visual_behavior/follow_person.h"
+#include <string>
+#include <memory>
 
 #include "ros/ros.h"
 
+#include "behaviortree_cpp_v3/behavior_tree.h"
+#include "behaviortree_cpp_v3/bt_factory.h"
+#include "behaviortree_cpp_v3/utils/shared_library.h"
+#include "behaviortree_cpp_v3/loggers/bt_zmq_publisher.h"
+
+#include "ros/package.h"
+
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "visual_behavor");
+  ros::init(argc, argv, "behavior_tree");
+  ros::NodeHandle n;
 
-  visual_behavior::Follow_Person visual_behavior;
+  BT::BehaviorTreeFactory factory;
+  BT::SharedLibrary loader;
 
-  ros::Rate loop_rate(20);
-  while (ros::ok())
+  factory.registerFromPlugin(loader.getOSName("asr_follow_person_bt_node"));
+  factory.registerFromPlugin(loader.getOSName("asr_detect_person_bt_node"));
+  factory.registerFromPlugin(loader.getOSName("asr_turn_bt_node"));
+  factory.registerFromPlugin(loader.getOSName("asr_percieve_person_bt_node"));
+
+  auto blackboard = BT::Blackboard::create();
+  blackboard->set("object", "cup");
+
+  std::string pkgpath = ros::package::getPath("visual_behavior");
+  std::string xml_file = pkgpath + "/behavior_trees_xml/follow_person.xml";
+
+  BT::Tree tree = factory.createTreeFromFile(xml_file, blackboard);
+  auto publisher_zmq = std::make_shared<BT::PublisherZMQ>(tree, 10, 1666, 1667);
+
+  ros::Rate loop_rate(10);
+
+  int count = 0;
+
+  bool finish = false;
+  while (ros::ok() && !finish)
   {
-    visual_behavior.step();
+    finish = tree.rootNode()->executeTick() == BT::NodeStatus::SUCCESS;
 
     ros::spinOnce();
     loop_rate.sleep();

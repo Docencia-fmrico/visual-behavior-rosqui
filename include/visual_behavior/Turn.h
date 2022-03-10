@@ -1,4 +1,5 @@
-// Copyright 2022 Intelligent Robotics Lab
+
+// Copyright 2019 Intelligent Robotics Lab
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,32 +13,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef FOLLOW_PERSON_H
-#define FOLLOW_PERSON_H
+#ifndef BEHAVIOR_TREES_TURN_H
+#define BEHAVIOR_TREES_TURN_H
 
-//Clase padre
+#include "behaviortree_cpp_v3/behavior_tree.h"
+#include "behaviortree_cpp_v3/bt_factory.h"
 
-#include "ros/ros.h"
-#include "darknet_ros_msgs/BoundingBoxes.h"
+#include <string>
 
 namespace visual_behavior
 {
 
-class Follow_Person
+class Turn : public BT::ActionNodeBase
 {
-public:
-  Follow_Person();
+  public:
+    explicit Turn(const std::string& name);
 
-  void Callback(const darknet_ros_msgs::BoundingBoxes::ConstPtr& msg);
-  void step();
+    void halt();
 
-protected:
-  ros::NodeHandle n_;
+    BT::NodeStatus tick();
 
-  ros::Subscriber sub_;
-  ros::Publisher pub_;
+  private:
+    int counter_;
 };
 
 }  // namespace visual_behavior
 
-#endif  // FOLLOW_PERSON_H
+#endif  // BEHAVIOR_TREES_TURN_H

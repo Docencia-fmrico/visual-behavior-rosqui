@@ -1,4 +1,5 @@
-// Copyright 2022 Intelligent Robotics Lab
+
+// Copyright 2019 Intelligent Robotics Lab
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,32 +13,40 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "visual_behavior/follow_person.h"
-#include "geometry_msgs/Twist.h"
-#include "darknet_ros_msgs/BoundingBoxes.h"
+#include <string>
+
+#include "visual_behavior/DetectPerson.h"
+
+#include "behaviortree_cpp_v3/behavior_tree.h"
 
 #include "ros/ros.h"
 
 namespace visual_behavior
 {
 
-// Constructor
-Follow_Person::Follow_Person()
+DetectPerson::DetectPerson(const std::string& name)
+: BT::ActionNodeBase(name, {}), counter_(0)
 {
-  sub_ = n_.subscribe("/darknet_ros/bouding_boxes", 1, &Follow_Person::Callback, this);
-  pub_ = n_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity",1);
 }
 
 void
-Follow_Person::Callback(const darknet_ros_msgs::BoundingBoxes::ConstPtr& msg)
+DetectPerson::halt()
 {
-   ROS_INFO("CALLBACK\n");
+  ROS_INFO("DetectPerson halt");
 }
 
-void
-Follow_Person::step()
+BT::NodeStatus
+DetectPerson::tick()
 {
-    ROS_INFO("STEP\n");
+  ROS_INFO("DetectPerson tick");
+
+  return BT::NodeStatus::SUCCESS;
 }
 
 }  // namespace visual_behavior
+
+#include "behaviortree_cpp_v3/bt_factory.h"
+BT_REGISTER_NODES(factory)
+{
+  factory.registerNodeType<visual_behavior::DetectPerson>("DetectPerson");
+}
