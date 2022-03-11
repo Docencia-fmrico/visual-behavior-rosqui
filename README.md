@@ -8,7 +8,7 @@
 
 <h1>VISUAL BEHAVIOUR</h1>
 
-<p align="center"> We were asked to complete the following task which, in this case we were obliged to use <b>behaviour trees</b>, a different way of approaching the solution of these exercises instead of using finite state machine.
+<p> We were asked to complete the following task which, in this case we were obliged to use <b>behaviour trees</b>, a different way of approaching the solution of these exercises instead of using finite state machine.
  </p>
 
 This task is called visual navigation as we have had to handle 3 exercises:
@@ -64,11 +64,12 @@ By the way, if you get in trouble with any package you may need to download a gi
 
 <details><summary><b>Filtered Darknet Ros</b></summary>
  We want to outline that using the Darknet Ros <a href="https://github.com/leggedrobotics/darknet_ros">github repo</a> only for people, we had to edit all yamls and we just left <b>person</b> in <b>detection clases names</b> 
-       
+</details>
+ 
 <h2>FOLLOW BALL</h2>
     
-
-<details><summary><b>Instalation</b></summary
+<details><summary><b>Instalation</b></summary>
+    
 </details>
     
 <details><summary><b>Commands Used</b></summary>
@@ -79,6 +80,6 @@ By the way, if you get in trouble with any package you may need to download a gi
 
 <h2>FOLLOW BOTH</h2>
 
-
-
+<details><summary><b>Behaviour tree</b></summary>
+</details>
 
