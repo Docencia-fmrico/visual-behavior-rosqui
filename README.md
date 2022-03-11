@@ -1,5 +1,5 @@
 <p align="center"><a href="https://www.youtube.com/channel/UC4Loc3tyy1vvGsMoBC5KCSw" target="_blank">
-    <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/rosquilogo.jpeg"
+    <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/logo.jpg"
 </a></p>
 
 <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/kobuki.jpg" align="right"
