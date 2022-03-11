@@ -58,7 +58,11 @@ By the way, if you get in trouble with any package you may need to download a gi
 </details>
 
 <details><summary><b>Behaviour tree</b></summary>
-    This is the tree we have decided to use:
+    
+This is the tree we have decided to use:
+ 
+<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/follow_person_bt.gif" align="center"
+alt="Follow person bt" width="600" height="600">
     
 </details>
 
