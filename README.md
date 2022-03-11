@@ -3,7 +3,7 @@
 </a></p>
 
 <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/kobuki.jpg" align="right"
-     alt="Kobuki Image" width="200" height="240">
+     alt="Kobuki Image" width="200" height="250">
     
 # VISUAL BEHAVIOUR   
 <p align="center"> We were asked to complete the following task which, in this case we were obliged to use <b>behaviour trees</b>, a different way of approaching the solution of these exercises instead of using finite state machine.
@@ -13,7 +13,7 @@ This task is called visual navigation as we have had to handle 3 exercises:
 
 ## FOLLOW PERSON
 First of all we have done a behaviour tree called **follow person**. As you can see, by its name we can know that the task it performs is following a person. 
-We used darknet ros filtered just only for people 
+We used darknet ros filtered just only for people.
 
 <details><summary><b>Instalation</b></summary>
    
@@ -24,7 +24,7 @@ We used darknet ros filtered just only for people
     
 </details>
 
-<details><summary><b>Darknet Ros Modificated</b></summary>
+<details><summary><b>Filtered Darknet Ros</b></summary>
 (We edited all yamls and we only included “person” in detection clases names) *add snippet*
 </details>
 
