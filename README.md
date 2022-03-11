@@ -18,11 +18,32 @@ First of all we have done a behaviour tree called <b>follow person</b>. As you c
 We used darknet ros filtered just only for people.
 
 <details><summary><b>Instalation</b></summary>
-   
-</details>
+For this task we had to install the following packages:
     
+    ```sh
+    $ sudo apt-get install ros-noetic-behaviortree-cpp-v3
+    $ sudo apt-get install ros-noetic-move-base-msgs
+    $ sudo apt-get install ros-noetic-kobuki-*
+    $ sudo apt-get install openni2-*
+    $ sudo apt-get install ros-noetic-rgbd-launch 
+    $ sudo apt-get install --fix-missing ros-noetic-rgbd-launch
+    $ sudo apt-get install ros-noetic-cameras-*
+    ```
+If you want to try it by your own personal camera, you can download the following package:
+    ```sh
+    $ sudo apt-get install ros-noetic-usb-cam-*
+    ```
+ 
+    
+</details>
+
+
 <details><summary><b>Commands Used</b></summary>
-(See alvaro’s PDF and add  all aplications used “Darknet Ros and all packages you need to download)
+(See alvaro’s PDF and add all aplications used “Darknet Ros" and all packages you need to download)
+</details>
+
+<details><summary><b>Behaviour tree</b></summary>
+    This is the tree we have decided to use:
     
 </details>
 
@@ -31,7 +52,9 @@ We used darknet ros filtered just only for people.
 </details>
 
 
+
 <h2>FOLLOW BALL</h2>
+
 
 <h2>FOLLOW BOTH</h2>
 
