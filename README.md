@@ -5,7 +5,14 @@
 <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/kobuki.jpg" align="right"
      alt="Kobuki Image" width="200" height="250">
     
-<h1> VISUAL NAVIGATION</h1>
+<head>
+  <style>
+    h1 { color: #FF0000; }
+  </style>
+</head>
+<body>
+  <h1>Title</h1>
+</body>
 
 <p align="center"> We were asked to complete the following task which, in this case we were obliged to use <b>behaviour trees</b>, a different way of approaching the solution of these exercises instead of using finite state machine.
  </p>
