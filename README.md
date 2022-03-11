@@ -20,7 +20,7 @@ We used darknet ros filtered just only for people.
 <details><summary><b>Instalation</b></summary>
 For this task we had to install the following packages:
     
-    ```sh
+    
     $ sudo apt-get install ros-noetic-behaviortree-cpp-v3
     $ sudo apt-get install ros-noetic-move-base-msgs
     $ sudo apt-get install ros-noetic-kobuki-*
@@ -28,13 +28,13 @@ For this task we had to install the following packages:
     $ sudo apt-get install ros-noetic-rgbd-launch 
     $ sudo apt-get install --fix-missing ros-noetic-rgbd-launch
     $ sudo apt-get install ros-noetic-cameras-*
-    ```
-If you want to try it by your own personal camera, you can download the following package:
-    ```sh
-    $ sudo apt-get install ros-noetic-usb-cam-*
-    ```
- 
     
+If you want to try it by your own personal camera, you can download the following package:
+   
+    $ sudo apt-get install ros-noetic-usb-cam-*
+   
+By the way, if you get in trouble with any package you may need to download a github repository related to the package 
+
 </details>
 
 
