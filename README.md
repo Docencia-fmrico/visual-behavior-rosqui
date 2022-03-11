@@ -33,13 +33,27 @@ If you want to try it by your own personal camera, you can download the followin
    
     $ sudo apt-get install ros-noetic-usb-cam-*
    
-By the way, if you get in trouble with any package you may need to download a github repository related to the package 
+By the way, if you get in trouble with any package you may need to download a github repository related to the package. 
 
 </details>
 
-
 <details><summary><b>Commands Used</b></summary>
-(See alvaro’s PDF and add all aplications used “Darknet Ros" and all packages you need to download)
+    
+- <b>See Darknet Ros using 3D camera</b>
+    
+    You should follow the followings steps:
+    
+        $ roslaunch openni2_launch openni2.launch
+        $ roslaunch darknet_ros darknet_ros.launch image:=/camera/rgb/image_raw/
+    
+- <h4>See Darknet Ros using usb camera</h3>
+    
+    You should follow the followings steps:
+        $ roscore
+        $ rosrun usb_cam usb_cam_node
+        $ rosrun cameras_cpp nodo_camera
+        $ roslaunch darknet_ros darknet_ros.launch iamge:=/usb_cam/image_raw/
+      
 </details>
 
 <details><summary><b>Behaviour tree</b></summary>
