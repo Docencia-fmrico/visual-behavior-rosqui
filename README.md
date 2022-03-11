@@ -5,22 +5,16 @@
 <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/kobuki.jpg" align="right"
      alt="Kobuki Image" width="200" height="250">
     
-<head>
-  <style>
-    .heading { color: #FF0000; }
-  </style>
-</head>
-<body>
-  <h1 class="heading">Title</h1>
-  <p>Some paragraph text.</p>
-  
+
+<h1>VISUAL BEHAVIOUR</h1>
+
 <p align="center"> We were asked to complete the following task which, in this case we were obliged to use <b>behaviour trees</b>, a different way of approaching the solution of these exercises instead of using finite state machine.
  </p>
 
 This task is called visual navigation as we have had to handle 3 exercises:
 
-## FOLLOW PERSON
-First of all we have done a behaviour tree called **follow person**. As you can see, by its name we can know that the task it performs is following a person. 
+<h2>FOLLOW PERSON</h2>
+First of all we have done a behaviour tree called <b>follow person</b>. As you can see, by its name we can know that the task it performs is following a person. 
 We used darknet ros filtered just only for people.
 
 <details><summary><b>Instalation</b></summary>
@@ -37,10 +31,9 @@ We used darknet ros filtered just only for people.
 </details>
 
 
-## FOLLOW BALL
+<h2>FOLLOW BALL</h2>
 
-## FOLLOW BOTH
-</body>
+<h2>FOLLOW BOTH</h2>
 
 
 
