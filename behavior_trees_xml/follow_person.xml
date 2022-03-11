@@ -4,15 +4,10 @@
     <BehaviorTree ID="BehaviorTree">
         <ReactiveSequence>
             <Fallback>
-                <Inverter>
-                    <Condition ID="FollowPerson"/>
-                </Inverter>
-                <Action ID="DetectPerson"/>
+                    <Condition ID="PercievePerson"/>
+                    <Action ID="Turn"/>
             </Fallback>
-            <ReactiveSequence>
-                <Action ID="Turn"/>
-                <Action ID="PercievePerson"/>
-            </ReactiveSequence>
+                <Action ID="FollowPerson"/>
         </ReactiveSequence>
     </BehaviorTree>
     <!-- ////////// -->
@@ -20,7 +15,6 @@
         <Condition ID="FollowPerson"/>
         <Action ID="PercievePerson"/>
         <Action ID="Turn"/>
-        <Action ID="DetectPerson"/>
     </TreeNodesModel>
     <!-- ////////// -->
 </root>

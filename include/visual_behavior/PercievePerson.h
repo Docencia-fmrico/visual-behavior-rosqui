@@ -18,6 +18,14 @@
 
 #include "behaviortree_cpp_v3/behavior_tree.h"
 #include "behaviortree_cpp_v3/bt_factory.h"
+#include <message_filters/subscriber.h>
+#include <message_filters/time_synchronizer.h>
+#include <message_filters/sync_policies/approximate_time.h>
+
+#include <cv_bridge/cv_bridge.h>
+
+#include <sensor_msgs/Image.h>
+#include <darknet_ros_msgs/BoundingBoxes.h>
 
 #include <string>
 
@@ -28,13 +36,15 @@ class PercievePerson : public BT::ActionNodeBase
 {
   public:
     explicit PercievePerson(const std::string& name);
+    void callback_bbx(const sensor_msgs::ImageConstPtr& image, const darknet_ros_msgs::BoundingBoxesConstPtr& boxes);
 
     void halt();
 
     BT::NodeStatus tick();
 
   private:
-    int counter_;
+    ros::NodeHandle nh_;
+
 };
 
 }  // namespace visual_behavior

@@ -33,7 +33,6 @@ int main(int argc, char **argv)
   BT::SharedLibrary loader;
 
   factory.registerFromPlugin(loader.getOSName("asr_follow_person_bt_node"));
-  factory.registerFromPlugin(loader.getOSName("asr_detect_person_bt_node"));
   factory.registerFromPlugin(loader.getOSName("asr_turn_bt_node"));
   factory.registerFromPlugin(loader.getOSName("asr_percieve_person_bt_node"));
 
@@ -50,10 +49,9 @@ int main(int argc, char **argv)
 
   int count = 0;
 
-  bool finish = false;
-  while (ros::ok() && !finish)
+  while (ros::ok())
   {
-    finish = tree.rootNode()->executeTick() == BT::NodeStatus::SUCCESS;
+    tree.rootNode()->executeTick();
 
     ros::spinOnce();
     loop_rate.sleep();

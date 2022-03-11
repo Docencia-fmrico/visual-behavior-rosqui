@@ -38,16 +38,8 @@ Turn::halt()
 BT::NodeStatus
 Turn::tick()
 {
-  ROS_INFO("Turn tick %d", counter_);
-
-  if (counter_++ < 5)
-  {
-    return BT::NodeStatus::RUNNING;
-  }
-  else
-  {
-    return BT::NodeStatus::SUCCESS;
-  }
+  ROS_INFO("Turn tick");
+  return BT::NodeStatus::SUCCESS;
 }
 
 }  // namespace visual_behavior

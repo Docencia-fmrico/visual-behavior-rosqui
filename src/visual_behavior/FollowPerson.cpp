@@ -40,29 +40,8 @@ FollowPerson::halt()
 BT::NodeStatus
 FollowPerson::tick()
 {
-  if (status() == BT::NodeStatus::IDLE)
-  {
-    ROS_INFO("First time in FollowPerson");
-  }
-
-  std::string object = getInput<std::string>("object").value();
-  ROS_INFO("FollowPerson [%s] tick %d", object.c_str(), counter_);
-
-  if (counter_++ < 50)
-  {
-    geometry_msgs::Twist msg;
-    msg.linear.x = 0.4;
-
-    vel_pub_.publish(msg);
-    return BT::NodeStatus::RUNNING;
-  }
-  else
-  {
-    geometry_msgs::Twist msg;
-    vel_pub_.publish(msg);
-
+    ROS_INFO("FollowPerson tick");
     return BT::NodeStatus::SUCCESS;
-  }
 }
 
 }  // namespace visual_behavior
