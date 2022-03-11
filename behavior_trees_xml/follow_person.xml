@@ -7,7 +7,7 @@
               <Condition ID="PercievePerson"/>
               <Action ID="Turn"/>
             </Fallback>
-            <Action ID="follow_person"/>
+            <Action ID="FollowPerson"/>
         </ReactiveSequence>
     </BehaviorTree>
     <!-- ////////// -->
