@@ -3,7 +3,7 @@
 </a></p>
 
 <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/kobuki.jpg" align="right"
-     alt="Kobuki Image" width="300" height="200">
+     alt="Kobuki Image" width="270" height="200">
     
 
 <h1>VISUAL BEHAVIOUR</h1>
