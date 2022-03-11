@@ -13,7 +13,6 @@
 <body>
   <h1 class="heading">Title</h1>
   <p>Some paragraph text.</p>
-</body>
   
 <p align="center"> We were asked to complete the following task which, in this case we were obliged to use <b>behaviour trees</b>, a different way of approaching the solution of these exercises instead of using finite state machine.
  </p>
@@ -41,6 +40,7 @@ We used darknet ros filtered just only for people.
 ## FOLLOW BALL
 
 ## FOLLOW BOTH
+</body>
 
 
 
