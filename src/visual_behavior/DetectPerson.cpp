@@ -39,7 +39,6 @@ BT::NodeStatus
 DetectPerson::tick()
 {
   ROS_INFO("DetectPerson tick");
-
   return BT::NodeStatus::SUCCESS;
 }
 
