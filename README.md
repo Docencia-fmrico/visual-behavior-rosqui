@@ -63,7 +63,9 @@ By the way, if you get in trouble with any package you may need to download a gi
 </details>
 
 <details><summary><b>Filtered Darknet Ros</b></summary>
-(We edited all yamls and we only included “person” in detection clases names) *add snippet*
+    
+    Darknet Ros
+  (We edited all yamls and we only included “person” in detection clases names) *add snippet*
 </details>
 
 
