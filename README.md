@@ -5,9 +5,8 @@
 <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/kobuki.jpg" align="right"
      alt="Kobuki Image" width="200" height="250">
     
-<p style = "font-family:monaco;">
-    VISUAL BEHAVIOUR   
-</p>
+<h1 style="color:red;"> VISUAL NAVIGATION</h1>
+
 <p align="center"> We were asked to complete the following task which, in this case we were obliged to use <b>behaviour trees</b>, a different way of approaching the solution of these exercises instead of using finite state machine.
  </p>
 
