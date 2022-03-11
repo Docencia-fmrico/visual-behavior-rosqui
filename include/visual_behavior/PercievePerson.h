@@ -49,7 +49,6 @@ class PercievePerson : public BT::ActionNodeBase
     message_filters::Subscriber<darknet_ros_msgs::BoundingBoxes> bbx_sub;
     typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::Image, darknet_ros_msgs::BoundingBoxes> MySyncPolicy_bbx;
     message_filters::Synchronizer<MySyncPolicy_bbx> sync_bbx;
-
 };
 
 }  // namespace visual_behavior

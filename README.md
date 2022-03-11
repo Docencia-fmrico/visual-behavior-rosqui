@@ -1,14 +1,80 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=7213844&assignment_repo_type=AssignmentRepo)
-# visual-behaviors
+<p align="center"><a href="https://www.youtube.com/channel/UC4Loc3tyy1vvGsMoBC5KCSw" target="_blank">
+    <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/logo.jpg">
+</a></p>
 
-La práctica se compone de tres partes:
+<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/kobuki.jpg" align="right"
+     alt="Kobuki Image" width="200" height="250">
+    
 
-1. Seguimiento visual de la pelota: El robot debe seguir una pelota. El robot debe avanzar hasta estar a un metro, aproximadamente, de la pelota. A partir de ahí, seguira orientandose hacia ella, y tratando de mantener la distancia de un metro incluso si la pelota se mueve hacia el robot. Se usará:
-   1.  Un filtro de color en HSV
-   2.  Una estimación de la distancia al objeto filtrado, ya sea con PointCloud o con la imagen de profundidad.
-   3.  Behavior Trees para programar la lógica de control.
-   4.  PIDs para la orientación y la distancia.
-2. Seguimiento visual de una persona: Similar al punto anterior, pero detectando a la persona con darket_ros.
-3. Comportamiento mixto: El robot debe seguir tanto a las personas como a las pelotas que perciba con la cámara, teniendo prioridad la pelota.
+<h1>VISUAL BEHAVIOUR</h1>
 
-Entrega: Viernes 11 de Marzo.
+<p align="center"> We were asked to complete the following task which, in this case we were obliged to use <b>behaviour trees</b>, a different way of approaching the solution of these exercises instead of using finite state machine.
+ </p>
+
+This task is called visual navigation as we have had to handle 3 exercises:
+
+<h2>FOLLOW PERSON</h2>
+First of all we have done a behaviour tree called <b>follow person</b>. As you can see, by its name we can know that the task it performs is following a person. 
+We used darknet ros filtered just only for people.
+
+<details><summary><b>Instalation</b></summary>
+For this task we had to install the following packages:
+    
+    
+    $ sudo apt-get install ros-noetic-behaviortree-cpp-v3
+    $ sudo apt-get install ros-noetic-move-base-msgs
+    $ sudo apt-get install ros-noetic-kobuki-*
+    $ sudo apt-get install openni2-*
+    $ sudo apt-get install ros-noetic-rgbd-launch 
+    $ sudo apt-get install --fix-missing ros-noetic-rgbd-launch
+    $ sudo apt-get install ros-noetic-cameras-*
+    
+If you want to try it by your own personal camera, you can download the following package:
+   
+    $ sudo apt-get install ros-noetic-usb-cam-*
+   
+By the way, if you get in trouble with any package you may need to download a github repository related to the package. 
+
+</details>
+
+<details><summary><b>Commands Used</b></summary>
+    
+- <b>See Darknet Ros using 3D camera</b>
+    
+    You should follow the followings steps:
+    
+        $ roslaunch openni2_launch openni2.launch
+        $ roslaunch darknet_ros darknet_ros.launch image:=/camera/rgb/image_raw/
+    
+- <h4>See Darknet Ros using usb camera</h3>
+    
+    You should follow the followings steps:
+    
+        $ roscore
+        $ rosrun usb_cam usb_cam_node
+        $ rosrun cameras_cpp nodo_camera
+        $ roslaunch darknet_ros darknet_ros.launch iamge:=/usb_cam/image_raw/
+      
+</details>
+
+<details><summary><b>Behaviour tree</b></summary>
+    This is the tree we have decided to use:
+    
+</details>
+
+<details><summary><b>Filtered Darknet Ros</b></summary>
+    
+    Darknet Ros
+  (We edited all yamls and we only included “person” in detection clases names) *add snippet*
+</details>
+
+
+
+<h2>FOLLOW BALL</h2>
+
+
+<h2>FOLLOW BOTH</h2>
+
+
+
+

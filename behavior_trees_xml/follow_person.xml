@@ -4,47 +4,17 @@
     <BehaviorTree ID="BehaviorTree">
         <ReactiveSequence>
             <Fallback>
-<<<<<<< HEAD
-                    <Condition ID="PercievePerson"/>
-                    <Action ID="Turn"/>
-            </Fallback>
-                <Action ID="FollowPerson"/>
-=======
-                <Inverter>
-<<<<<<< HEAD
-                    <Condition ID="FollowPerson"/>
-                </Inverter>
-                <Action ID="DetectPerson"/>
-            </Fallback>
-            <ReactiveSequence>
-                <Action ID="Turn"/>
-                <Action ID="PercievePerson"/>
-            </ReactiveSequence>
-=======
-                    <Condition ID="detect_person"/>
-                </Inverter>
-                <Action ID="turn"/>
+              <Condition ID="PercievePerson"/>
+              <Action ID="Turn"/>
             </Fallback>
             <Action ID="follow_person"/>
->>>>>>> 17a84cf22809c9fd5ba8b58fdbc7744ee0979ef1
->>>>>>> 0c6d16920020bb7eaea9d9bc2e761f75ed71b87f
         </ReactiveSequence>
     </BehaviorTree>
     <!-- ////////// -->
     <TreeNodesModel>
-<<<<<<< HEAD
         <Condition ID="FollowPerson"/>
         <Action ID="PercievePerson"/>
         <Action ID="Turn"/>
     </TreeNodesModel>
     <!-- ////////// -->
 </root>
-=======
-        <Condition ID="detect_person"/>
-        <Action ID="follow_person"/>
-        <Action ID="turn"/>
-    </TreeNodesModel>
-    <!-- ////////// -->
-</root>
-
->>>>>>> 17a84cf22809c9fd5ba8b58fdbc7744ee0979ef1
