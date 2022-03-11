@@ -2,17 +2,13 @@
 <launch>
 
   <node pkg="visual_behavior" type="follow_person_node" name="Follow_Person" output="screen"/>
-  <node pkg="cameras_cpp" type="nodo_camera" name="cameras_cpp"/>
 
   <include file="$(find darknet_ros)/launch/darknet_ros.launch">
     <arg name="image" value="/camera/rgb/image_raw/"/>
   </include>
-<<<<<<< HEAD
 
   <include file="$(find openni2_launch)/launch/openni2.launch"/>
 
-=======
   <include file="$(find robots)/launch/kobuki_astra.launch"/>
   
->>>>>>> 17a84cf22809c9fd5ba8b58fdbc7744ee0979ef1
 </launch>

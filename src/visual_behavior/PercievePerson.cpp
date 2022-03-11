@@ -48,15 +48,13 @@ void callback_bbx(const sensor_msgs::ImageConstPtr& image, const darknet_ros_msg
 }
 
 PercievePerson::PercievePerson(const std::string& name)
-: BT::ActionNodeBase(name, {})
+: BT::ActionNodeBase(name, {}),
+  nh_(),
+  image_depth_sub(nh_, "/camera/depth/image_raw", 1),
+  bbx_sub(nh_, "/darknet_ros/bounding_boxes", 1),
+  sync_bbx(MySyncPolicy_bbx(10), image_depth_sub, bbx_sub)
 {
-  message_filters::Subscriber<sensor_msgs::Image> image_depth_sub(nh_, "/camera/depth/image_raw", 1);
-  message_filters::Subscriber<darknet_ros_msgs::BoundingBoxes> bbx_sub(nh_, "/darknet_ros/bounding_boxes", 1);
-  
-  typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::Image, darknet_ros_msgs::BoundingBoxes> MySyncPolicy_bbx;
-  message_filters::Synchronizer<MySyncPolicy_bbx> sync_bbx(MySyncPolicy_bbx(10), image_depth_sub, bbx_sub);
-
-  sync_bbx.registerCallback(boost::bind(&callback_bbx, _1, _2));
+  sync_bbx.registerCallback(boost::bind(&PercievePerson::callback_bbx, this, _1, _2));
 }
 
 void
