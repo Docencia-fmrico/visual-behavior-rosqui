@@ -10,10 +10,8 @@
     h1 { color: #FF0000; }
   </style>
 </head>
-<body>
-  <h1>Title</h1>
-</body>
-
+ <h1>Title</h1>
+  
 <p align="center"> We were asked to complete the following task which, in this case we were obliged to use <b>behaviour trees</b>, a different way of approaching the solution of these exercises instead of using finite state machine.
  </p>
 
