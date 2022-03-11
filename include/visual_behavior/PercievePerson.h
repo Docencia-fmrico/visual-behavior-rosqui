@@ -1,4 +1,3 @@
-
 // Copyright 2022 ROSqui
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,7 +43,6 @@ class PercievePerson : public BT::ActionNodeBase
 
   private:
     ros::NodeHandle nh_;
-
     message_filters::Subscriber<sensor_msgs::Image> image_depth_sub;
     message_filters::Subscriber<darknet_ros_msgs::BoundingBoxes> bbx_sub;
     typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::Image, darknet_ros_msgs::BoundingBoxes> MySyncPolicy_bbx;

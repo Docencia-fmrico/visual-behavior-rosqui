@@ -29,9 +29,6 @@ find_package(catkin REQUIRED COMPONENTS
   darknet_ros_msgs
 )
 
-find_package(OpenCV)
-include_directories(${OpenCV_INCLUDE_DIRS})
-
 catkin_package(
 CATKIN_DEPENDS roscpp std_msgs behaviortree_cpp_v3
   sensor_msgs
@@ -42,10 +39,17 @@ CATKIN_DEPENDS roscpp std_msgs behaviortree_cpp_v3
   pcl_ros
 )
 
+find_package(OpenCV)
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
   ${ZMQ_INCLUDE_DIRS}
+  ${PCL_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
+)
+
+link_directories(
+	${PCL_LIBRARY_DIRS}
 )
 
 add_library(asr_follow_person_bt_node SHARED src/visual_behavior/FollowPerson.cpp)
@@ -54,7 +58,7 @@ add_library(asr_percieve_person_bt_node SHARED src/visual_behavior/PercievePerso
 list(APPEND plugin_libs
   asr_follow_person_bt_node
   asr_turn_bt_node
-  asr_percieve_person_bt_node
+  asr_percieve_person_bt_node 
 )
 
 foreach(bt_plugin ${plugin_libs})

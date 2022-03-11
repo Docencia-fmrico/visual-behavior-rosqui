@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 
   auto blackboard = BT::Blackboard::create();
   blackboard->set("object", "cup");
-
+  
   std::string pkgpath = ros::package::getPath("visual_behavior");
   std::string xml_file = pkgpath + "/behavior_trees_xml/follow_person.xml";
 

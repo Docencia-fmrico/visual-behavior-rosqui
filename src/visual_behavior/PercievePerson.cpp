@@ -23,10 +23,21 @@
 namespace visual_behavior
 {
 
-void callback_bbx(const sensor_msgs::ImageConstPtr& image, const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
+PercievePerson::PercievePerson(const std::string& name)
+: BT::ActionNodeBase(name, {}),
+  nh_(),
+  image_depth_sub(nh_, "/camera/depth/image_raw", 1),
+  bbx_sub(nh_, "/darknet_ros/bounding_boxes", 1),
+  sync_bbx(MySyncPolicy_bbx(10), image_depth_sub, bbx_sub)
+{
+  ROS_INFO("TEST PERCIEVE PERSON");
+  sync_bbx.registerCallback(boost::bind(&PercievePerson::callback_bbx, this, _1, _2));
+}
+
+void PercievePerson::callback_bbx(const sensor_msgs::ImageConstPtr& image, const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
 {
 
-  cv_bridge::CvImagePtr img_ptr_depth;
+  /* cv_bridge::CvImagePtr img_ptr_depth;
 
   try{
       img_ptr_depth = cv_bridge::toCvCopy(*image, sensor_msgs::image_encodings::TYPE_32FC1);
@@ -42,18 +53,9 @@ void callback_bbx(const sensor_msgs::ImageConstPtr& image, const darknet_ros_msg
     int py = (box.ymax + box.ymin) / 2;
 
     float dist = img_ptr_depth->image.at<float>(cv::Point(px, py)) * 0.001f;
-    std::cerr << box.Class << " at (" << dist << std::endl;
-  }
-}
-
-PercievePerson::PercievePerson(const std::string& name)
-: BT::ActionNodeBase(name, {}),
-  nh_(),
-  image_depth_sub(nh_, "/camera/depth/image_raw", 1),
-  bbx_sub(nh_, "/darknet_ros/bounding_boxes", 1),
-  sync_bbx(MySyncPolicy_bbx(10), image_depth_sub, bbx_sub)
-{
-  sync_bbx.registerCallback(boost::bind(&PercievePerson::callback_bbx, this, _1, _2));
+    std::cerr << box.Class << " at (" << dist << std::endl; */
+    ROS_INFO("CALLBACK");
+  //}
 }
 
 void
