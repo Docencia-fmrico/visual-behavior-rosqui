@@ -49,6 +49,7 @@ By the way, if you get in trouble with any package you may need to download a gi
 - <h4>See Darknet Ros using usb camera</h3>
     
     You should follow the followings steps:
+    
         $ roscore
         $ rosrun usb_cam usb_cam_node
         $ rosrun cameras_cpp nodo_camera
