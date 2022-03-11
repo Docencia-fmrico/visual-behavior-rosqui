@@ -63,15 +63,19 @@ By the way, if you get in trouble with any package you may need to download a gi
 </details>
 
 <details><summary><b>Filtered Darknet Ros</b></summary>
-    
-    Darknet Ros
-  (We edited all yamls and we only included “person” in detection clases names) *add snippet*
-</details>
-
-
-
+ We want to outline that using the Darknet Ros <a href="https://github.com/leggedrobotics/darknet_ros">github repo</a> only for people, we had to edit all yamls and we just left <b>person</b> in <b>detection clases names</b> 
+       
 <h2>FOLLOW BALL</h2>
+    
 
+<details><summary><b>Instalation</b></summary
+</details>
+    
+<details><summary><b>Commands Used</b></summary>
+</details>
+    
+<details><summary><b>Behaviour tree</b></summary>
+</details>
 
 <h2>FOLLOW BOTH</h2>
 
