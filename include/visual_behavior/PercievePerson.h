@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef BEHAVIOR_TREES_PERCIEVEPERSON_H
-#define BEHAVIOR_TREES_PERCIEVEPERSON_H
+#ifndef VISUAL_BEHAVIOR_PERCIEVEPERSON_H
+#define VISUAL_BEHAVIOR_PERCIEVEPERSON_H
 
 #include "behaviortree_cpp_v3/behavior_tree.h"
 #include "behaviortree_cpp_v3/bt_factory.h"
@@ -35,7 +35,8 @@ class PercievePerson : public BT::ActionNodeBase
 {
   public:
     explicit PercievePerson(const std::string& name);
-    void callback_bbx(const sensor_msgs::ImageConstPtr& image, const darknet_ros_msgs::BoundingBoxesConstPtr& boxes);
+    void callback_bbx(const sensor_msgs::ImageConstPtr& image,
+    const darknet_ros_msgs::BoundingBoxesConstPtr& boxes);
 
     void halt();
 
@@ -45,10 +46,11 @@ class PercievePerson : public BT::ActionNodeBase
     ros::NodeHandle nh_;
     message_filters::Subscriber<sensor_msgs::Image> image_depth_sub;
     message_filters::Subscriber<darknet_ros_msgs::BoundingBoxes> bbx_sub;
-    typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::Image, darknet_ros_msgs::BoundingBoxes> MySyncPolicy_bbx;
+    typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::Image,
+    darknet_ros_msgs::BoundingBoxes> MySyncPolicy_bbx;
     message_filters::Synchronizer<MySyncPolicy_bbx> sync_bbx;
 };
 
 }  // namespace visual_behavior
 
-#endif  // BEHAVIOR_TREES_PERCIEVEPERSON_H
+#endif  // VISUAL_BEHAVIOR_PERCIEVEPERSON_H

@@ -34,10 +34,10 @@ PercievePerson::PercievePerson(const std::string& name)
   sync_bbx.registerCallback(boost::bind(&PercievePerson::callback_bbx, this, _1, _2));
 }
 
-void PercievePerson::callback_bbx(const sensor_msgs::ImageConstPtr& image, const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
+void PercievePerson::callback_bbx(const sensor_msgs::ImageConstPtr& image,
+const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
 {
-
-  /* cv_bridge::CvImagePtr img_ptr_depth;
+  /*cv_bridge::CvImagePtr img_ptr_depth;
 
   try{
       img_ptr_depth = cv_bridge::toCvCopy(*image, sensor_msgs::image_encodings::TYPE_32FC1);
@@ -53,7 +53,7 @@ void PercievePerson::callback_bbx(const sensor_msgs::ImageConstPtr& image, const
     int py = (box.ymax + box.ymin) / 2;
 
     float dist = img_ptr_depth->image.at<float>(cv::Point(px, py)) * 0.001f;
-    std::cerr << box.Class << " at (" << dist << std::endl; */
+    std::cerr << box.Class << " at (" << dist << std::endl;*/
     ROS_INFO("CALLBACK");
   //}
 }
@@ -77,7 +77,6 @@ PercievePerson::tick()
   {
     return BT::NodeStatus::FAILURE;
   }
-
 }
 
 }  // namespace visual_behavior
