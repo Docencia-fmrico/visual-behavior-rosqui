@@ -33,10 +33,10 @@ class Turn : public BT::ActionNodeBase
     void halt();
 
     BT::NodeStatus tick();
-  private:
+  protected:
     ros::NodeHandle nh_;
     ros::Publisher pub_vel_;
-    int TURN_VEL = 0.4;
+    static constexpr double TURN_VEL = 0.4;
 };
 
 }  // namespace visual_behavior

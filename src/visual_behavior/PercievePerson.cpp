@@ -30,14 +30,16 @@ PercievePerson::PercievePerson(const std::string& name)
   bbx_sub(nh_, "/darknet_ros/bounding_boxes", 1),
   sync_bbx(MySyncPolicy_bbx(10), image_depth_sub, bbx_sub)
 {
-  ROS_INFO("TEST PERCIEVE PERSON");
+  detected = false;
   sync_bbx.registerCallback(boost::bind(&PercievePerson::callback_bbx, this, _1, _2));
 }
 
 void PercievePerson::callback_bbx(const sensor_msgs::ImageConstPtr& image, const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
 {
 
-  /* cv_bridge::CvImagePtr img_ptr_depth;
+  detected = true;
+
+  cv_bridge::CvImagePtr img_ptr_depth;
 
   try{
       img_ptr_depth = cv_bridge::toCvCopy(*image, sensor_msgs::image_encodings::TYPE_32FC1);
@@ -48,14 +50,18 @@ void PercievePerson::callback_bbx(const sensor_msgs::ImageConstPtr& image, const
       return;
   }
   
-  for (const auto & box : boxes->bounding_boxes) {
-    int px = (box.xmax + box.xmin) / 2;
-    int py = (box.ymax + box.ymin) / 2;
+  const auto & box = boxes->bounding_boxes[0];
 
-    float dist = img_ptr_depth->image.at<float>(cv::Point(px, py)) * 0.001f;
-    std::cerr << box.Class << " at (" << dist << std::endl; */
-    ROS_INFO("CALLBACK");
-  //}
+  int px = (box.xmax + box.xmin) / 2;
+  int py = (box.ymax + box.ymin) / 2;
+
+  float dist = img_ptr_depth->image.at<float>(cv::Point(px, py)) * 0.001f;
+
+  setOutput("person_x", px);
+  setOutput("person_z", dist);
+
+  ROS_INFO("person_x: %d \t person_z: %f\n", px, dist);
+  
 }
 
 void
@@ -67,14 +73,16 @@ PercievePerson::halt()
 BT::NodeStatus
 PercievePerson::tick()
 {
-  ROS_INFO("PercievePerson tick");
+  ROS_INFO("PercievePerson tick: %d", detected);
 
-  if (false)
+  if ( detected )
   {
+    detected = false;
     return BT::NodeStatus::SUCCESS;
   }
   else
   {
+    detected = false;
     return BT::NodeStatus::FAILURE;
   }
 

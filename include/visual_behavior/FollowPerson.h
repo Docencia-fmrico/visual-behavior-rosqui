@@ -20,6 +20,7 @@
 
 #include <string>
 
+#include "geometry_msgs/Twist.h"
 #include "ros/ros.h"
 
 namespace visual_behavior
@@ -28,23 +29,15 @@ namespace visual_behavior
 class FollowPerson : public BT::ActionNodeBase
 {
   public:
-    explicit FollowPerson(const std::string& name, const BT::NodeConfiguration& config);
+    explicit FollowPerson(const std::string& name);
 
     void halt();
 
     BT::NodeStatus tick();
 
-
-    static BT::PortsList providedPorts()
-    {
-        return { BT::InputPort<std::string>("object")};
-    }
-
-  private:
+  protected:
     ros::NodeHandle nh_;
-    ros::Publisher vel_pub_;
-
-    int counter_;
+    ros::Publisher pub_vel_;
 };
 
 }  // namespace visual_behavior

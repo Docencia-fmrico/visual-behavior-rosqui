@@ -37,7 +37,7 @@ int main(int argc, char **argv)
   factory.registerFromPlugin(loader.getOSName("asr_percieve_person_bt_node"));
 
   auto blackboard = BT::Blackboard::create();
-  blackboard->set("object", "cup");
+  blackboard->set("person_x", "person_z");
   
   std::string pkgpath = ros::package::getPath("visual_behavior");
   std::string xml_file = pkgpath + "/behavior_trees_xml/follow_person.xml";
