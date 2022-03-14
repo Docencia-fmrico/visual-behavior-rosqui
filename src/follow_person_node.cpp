@@ -37,6 +37,7 @@ int main(int argc, char **argv)
   factory.registerFromPlugin(loader.getOSName("asr_percieve_person_bt_node"));
 
   auto blackboard = BT::Blackboard::create();
+  
   blackboard->set("person_x", "person_z");
   
   std::string pkgpath = ros::package::getPath("visual_behavior");

@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef BEHAVIOR_TREES_FOLLOWPERSON_H
-#define BEHAVIOR_TREES_FOLLOWPERSON_H
+#ifndef VISUAL_BEHAVIOR_FOLLOWPERSON_H
+#define VISUAL_BEHAVIOR_FOLLOWPERSON_H
 
 #include "behaviortree_cpp_v3/behavior_tree.h"
 #include "behaviortree_cpp_v3/bt_factory.h"
@@ -42,4 +42,4 @@ class FollowPerson : public BT::ActionNodeBase
 
 }  // namespace visual_behavior
 
-#endif  // BEHAVIOR_TREES_FOLLOWPERSON_H
+#endif  // VISUAL_BEHAVIOR_FOLLOWPERSON_H

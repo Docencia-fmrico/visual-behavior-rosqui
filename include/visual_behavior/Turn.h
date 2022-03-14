@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef BEHAVIOR_TREES_TURN_H
-#define BEHAVIOR_TREES_TURN_H
+#ifndef VISUAL_BEHAVIOR_TURN_H
+#define VISUAL_BEHAVIOR_TURN_H
 
 #include "behaviortree_cpp_v3/behavior_tree.h"
 #include "behaviortree_cpp_v3/bt_factory.h"
@@ -41,4 +41,4 @@ class Turn : public BT::ActionNodeBase
 
 }  // namespace visual_behavior
 
-#endif  // BEHAVIOR_TREES_TURN_H
+#endif  // VISUAL_BEHAVIOR_TURN_H

@@ -3,12 +3,12 @@
 </a></p>
 
 <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/kobuki.jpg" align="right"
-     alt="Kobuki Image" width="200" height="250">
+     alt="Kobuki Image" width="270" height="200">
     
 
 <h1>VISUAL BEHAVIOUR</h1>
 
-<p align="center"> We were asked to complete the following task which, in this case we were obliged to use <b>behaviour trees</b>, a different way of approaching the solution of these exercises instead of using finite state machine.
+<p> We were asked to complete the following task which, in this case we were obliged to use <b>behaviour trees</b>, a different way of approaching the solution of these exercises instead of using finite state machine.
  </p>
 
 This task is called visual navigation as we have had to handle 3 exercises:
@@ -58,23 +58,38 @@ By the way, if you get in trouble with any package you may need to download a gi
 </details>
 
 <details><summary><b>Behaviour tree</b></summary>
-    This is the tree we have decided to use:
+    
+This is the tree we have decided to use:
+ 
+<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/follow_person_bt.gif" align="center"
+alt="Follow person bt" width="600" height="600">
+
+And this is how it looks like in <a href="https://github.com/BehaviorTree/Groot">Groot</a>:
+
+<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/groot_fp_bt.gif" align="center"
+alt="Follow person bt" width="600" height="600">
+        
     
 </details>
 
 <details><summary><b>Filtered Darknet Ros</b></summary>
-    
-    Darknet Ros
-  (We edited all yamls and we only included “person” in detection clases names) *add snippet*
+ We want to outline that using the Darknet Ros <a href="https://github.com/leggedrobotics/darknet_ros">github repo</a> only for people, we had to edit all yamls and we just left <b>person</b> in <b>detection clases names</b> 
 </details>
-
-
-
+ 
 <h2>FOLLOW BALL</h2>
-
+    
+<details><summary><b>Instalation</b></summary>
+    
+</details>
+    
+<details><summary><b>Commands Used</b></summary>
+</details>
+    
+<details><summary><b>Behaviour tree</b></summary>
+</details>
 
 <h2>FOLLOW BOTH</h2>
 
-
-
+<details><summary><b>Behaviour tree</b></summary>
+</details>
 
