@@ -61,8 +61,14 @@ By the way, if you get in trouble with any package you may need to download a gi
     
 This is the tree we have decided to use:
  
-<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/follow_person_bt.gif" align="center"
+<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/follow_person_bt.gif" align="center"
 alt="Follow person bt" width="600" height="600">
+
+And this is how it looks like in <a href="https://github.com/BehaviorTree/Groot">Groot</a>:
+
+<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/groot_fp_bt.gif" align="center"
+alt="Follow person bt" width="600" height="600">
+        
     
 </details>
 
