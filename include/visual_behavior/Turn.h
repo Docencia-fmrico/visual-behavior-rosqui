@@ -19,6 +19,8 @@
 #include "behaviortree_cpp_v3/bt_factory.h"
 
 #include <string>
+#include "geometry_msgs/Twist.h"
+#include "ros/ros.h"
 
 namespace visual_behavior
 {
@@ -31,9 +33,10 @@ class Turn : public BT::ActionNodeBase
     void halt();
 
     BT::NodeStatus tick();
-
   private:
-    int counter_;
+    ros::NodeHandle nh_;
+    ros::Publisher pub_vel_;
+    int TURN_VEL = 0.4;
 };
 
 }  // namespace visual_behavior

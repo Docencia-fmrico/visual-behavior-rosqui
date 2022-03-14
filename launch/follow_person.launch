@@ -7,7 +7,7 @@
     <arg name="image" value="/camera/rgb/image_raw/"/>
   </include>
 
-  <include file="$(find openni2_launch)/launch/openni2.launch"/>
+ 
   <include file="$(find robots)/launch/kobuki_astra.launch"/>
   
 </launch>

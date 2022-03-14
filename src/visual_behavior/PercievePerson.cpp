@@ -69,7 +69,7 @@ PercievePerson::tick()
 {
   ROS_INFO("PercievePerson tick");
 
-  if (true)
+  if (false)
   {
     return BT::NodeStatus::SUCCESS;
   }
