@@ -12,22 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <string>
-
 #include "visual_behavior/FollowPerson.h"
-
-#include "behaviortree_cpp_v3/behavior_tree.h"
-
-#include "geometry_msgs/Twist.h"
-#include "ros/ros.h"
 
 namespace visual_behavior
 {
 
-FollowPerson::FollowPerson(const std::string& name, const BT::NodeConfiguration & config)
-: BT::ActionNodeBase(name, config), counter_(0)
+FollowPerson::FollowPerson(const std::string& name)
+: BT::ActionNodeBase(name, {})
 {
-  vel_pub_ = nh_.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
+  pub_vel_ = nh_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity",100);
 }
 
 void
@@ -40,6 +33,19 @@ BT::NodeStatus
 FollowPerson::tick()
 {
     ROS_INFO("FollowPerson tick");
+
+    /*std::string person_x = getInput<std::string>("person_x").value();
+    std::string person_z = getInput<std::string>("person_z").value();*/
+
+    geometry_msgs::Twist cmd;
+
+    cmd.linear.x = 0.2;
+    cmd.angular.z = -0.4;
+   
+
+    pub_vel_.publish(cmd);
+
+
     return BT::NodeStatus::SUCCESS;
 }
 
