@@ -77,6 +77,9 @@ alt="Follow person bt groot" width="600" height="600">
     
 Here you can see a picture of it:
     
+<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/darknet_filtered.jpg" align="center"
+alt="Darknet Filtered" width="700" height="400">
+    
     
 </details>
  
@@ -102,6 +105,10 @@ We used .
     In rviz add image and its topic is /hsv/image_filtered/
     And these are the values used for filtering the ball:
     
+    <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/ball_filtered.jpg" align="center"
+    alt="Ball filtered" width="600" height="600">
+    
+    
  - <b>Filter Ball using rviz</b>
     
      You should follow the followings steps:
@@ -112,7 +119,7 @@ We used .
         $ roslaunch robots kobuki_xtion.launch (makes the transform)
         $ rviz (and choose 0 channel)
         $ roslaunch kobuki_keyop keyop.launch (for moving in the simulation and the image)
-        
+      
     
 </details>
     
