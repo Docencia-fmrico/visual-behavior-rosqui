@@ -35,7 +35,7 @@ FollowPerson::tick()
     ROS_INFO("FollowPerson tick");
 
     std::string person_x = getInput<std::string>("person_x").value();
-    /*std::string person_z = getInput<std::string>("person_z").value();*/
+    std::string person_z = getInput<std::string>("person_z").value();
 
     geometry_msgs::Twist cmd;
 
@@ -46,7 +46,10 @@ FollowPerson::tick()
     else 
       cmd.angular.z = 0;
     
-    cmd.linear.x = 0.0;
+    if (std::stod(person_z) > 1)
+      cmd.linear.x = 0.4;
+    else
+      cmd.linear.x = 0;
    
 
     pub_vel_.publish(cmd);
