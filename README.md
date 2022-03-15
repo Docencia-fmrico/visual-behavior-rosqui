@@ -108,7 +108,11 @@ We used .
     
         $ roslaunch robots sim.launch
         $ rosrun cameras_cpp nodo_camera (filter image)
-        $ rosrun cameras_cpp nodo_rgbd_filtered (publish in the image filtered topic)        
+        $ rosrun cameras_cpp nodo_rgbd_filtered (publish in the image filtered topic)
+        $ roslaunch robots kobuki_xtion.launch (makes the transform)
+        $ rviz (and choose 0 channel)
+        $ roslaunch kobuki_keyop keyop.launch (for moving in the simulation and the image)
+        
     
 </details>
     
