@@ -37,7 +37,6 @@ PercievePerson::PercievePerson(const std::string& name)
 void PercievePerson::callback_bbx(const sensor_msgs::ImageConstPtr& image,
 const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
 {
-  detected = true;
 
   cv_bridge::CvImagePtr img_ptr_depth;
   
@@ -52,15 +51,25 @@ const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
   
   const auto & box = boxes->bounding_boxes[0];
 
-  int px = (box.xmax + box.xmin) / 2;
-  int py = (box.ymax + box.ymin) / 2;
+  // Darknet only detects person
+  float prev_prob = 0;
+  for (const auto & box : boxes->bounding_boxes) {
+    if ( (box.probability > 50) && (box.probability > prev_prob))
+    {
+      detected = true;
+      prev_prob = box.probability;
 
-  float dist = img_ptr_depth->image.at<float>(cv::Point(px, py)) * 0.001f;
+      int px = (box.xmax + box.xmin) / 2;
+      int py = (box.ymax + box.ymin) / 2;
 
-  setOutput("person_x", px);
-  setOutput("person_z", dist);
+      float dist = img_ptr_depth->image.at<float>(cv::Point(px, py)) * 0.001f;
 
-  ROS_INFO("person_x: %d \t person_z: %f\n", px, dist);
+      setOutput("person_x", px);
+      setOutput("person_z", dist);
+
+      ROS_INFO("person_x: %d \t person_z: %f\n", px, dist);
+    }
+  }
 }
 
 void
@@ -74,9 +83,11 @@ PercievePerson::tick()
 {
   ROS_INFO("PercievePerson tick: %d", detected);
 
+  detected = false;
+  ros::spinOnce();
+
   if ( detected )
   {
-    detected = false;
     return BT::NodeStatus::SUCCESS;
   }
   else
