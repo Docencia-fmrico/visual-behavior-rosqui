@@ -52,13 +52,10 @@ const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
   const auto & box = boxes->bounding_boxes[0];
 
   // Darknet only detects person
-  float prev_prob = 0;
   for (const auto & box : boxes->bounding_boxes) {
-    if ( (box.probability > 50) && (box.probability > prev_prob))
+    if ((box.probability > 50))
     {
       detected = true;
-      prev_prob = box.probability;
-
       int px = (box.xmax + box.xmin) / 2;
       int py = (box.ymax + box.ymin) / 2;
 
@@ -82,17 +79,14 @@ BT::NodeStatus
 PercievePerson::tick()
 {
   ROS_INFO("PercievePerson tick: %d", detected);
-
-  detected = false;
-  ros::spinOnce();
-
+  
   if ( detected )
   {
+    detected = false;
     return BT::NodeStatus::SUCCESS;
   }
   else
   {
-    detected = false;
     return BT::NodeStatus::FAILURE;
   }
 }
