@@ -48,14 +48,13 @@ const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
       ROS_ERROR("cv_bridge exception:  %s", e.what());
       return;
   }
-  
-  const auto & box = boxes->bounding_boxes[0];
 
   int px = 0;
   int py = 0;
   float dist = 0;
   // Darknet only detects person
   for (const auto & box : boxes->bounding_boxes) {
+    ROS_INFO("PROB: %f", box.probability);
     if ((box.probability > 0.5))
     {
       ROS_INFO("DETECTED TRUE");
@@ -69,7 +68,7 @@ const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
     }
   }
   setOutput("person_x", px);
-  //setOutput("person_z", dist);
+  setOutput("person_z", dist);
 }
 
 void
@@ -81,17 +80,15 @@ PercievePerson::halt()
 BT::NodeStatus
 PercievePerson::tick()
 {
-  ROS_INFO("PercievePerson tick: %d", detected);
   ros::spinOnce();
   if ( detected )
   {
-    ROS_INFO("DETECTED FALSE");
     detected = false;
     return BT::NodeStatus::SUCCESS;
   }
   else
   {
-    ROS_INFO("FALSE");
+    //ROS_INFO("Detected: FALSE");
     return BT::NodeStatus::FAILURE;
   }
 }

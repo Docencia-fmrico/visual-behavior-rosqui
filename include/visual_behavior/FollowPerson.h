@@ -38,8 +38,7 @@ class FollowPerson : public BT::ActionNodeBase
 
     static BT::PortsList providedPorts()
     {
-        return { BT::OutputPort<std::string>("person_x")};
-        //return { BT::InputPort<std::string>("person_z")};
+        return { BT::InputPort<std::string>("person_x"), BT::InputPort<std::string>("person_z")};
     }
 
   protected:
