@@ -74,15 +74,42 @@ alt="Follow person bt groot" width="600" height="600">
 
 <details><summary><b>Filtered Darknet Ros</b></summary>
  We want to outline that using the Darknet Ros <a href="https://github.com/leggedrobotics/darknet_ros">github repo</a> only for people, we had to edit all yamls and we just left <b>person</b> in <b>detection clases names</b> 
+    
+Here you can see a picture of it:
+    
+    
 </details>
  
 <h2>FOLLOW BALL</h2>
+First of all we have done a behaviour tree called <b>follow ball</b>. As you can see, by its name we can know that the task it performs is following a ball. 
+We used .
     
 <details><summary><b>Instalation</b></summary>
+ 
     
 </details>
     
 <details><summary><b>Commands Used</b></summary>
+        
+- <b>Filter Ball using 3D camera</b>
+    
+    You should follow the followings steps:
+    
+        $ roslaunch openni2_launch openni2.launch
+        $ rosrun cameras_cpp nodo_camera (filter image)
+        $ rviz 
+    
+    In rviz add image and its topic is /hsv/image_filtered/
+    And these are the values used for filtering the ball:
+    
+ - <b>Filter Ball using rviz</b>
+    
+     You should follow the followings steps:
+    
+        $ roslaunch robots sim.launch
+        $ rosrun cameras_cpp nodo_camera (filter image)
+        $ rosrun cameras_cpp nodo_rgbd_filtered (publish in the image filtered topic)        
+    
 </details>
     
 <details><summary><b>Behaviour tree</b></summary>
