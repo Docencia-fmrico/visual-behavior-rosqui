@@ -34,11 +34,18 @@ namespace visual_behavior
 class PercievePerson : public BT::ActionNodeBase
 {
   public:
-    explicit PercievePerson(const std::string& name);
+    explicit PercievePerson(const std::string& name, const BT::NodeConfiguration & config);
     void callback_bbx(const sensor_msgs::ImageConstPtr& image,
     const darknet_ros_msgs::BoundingBoxesConstPtr& boxes);
 
     void halt();
+
+    static BT::PortsList providedPorts()
+    {
+        return { BT::InputPort<std::string>("person_x")};
+        //return { BT::InputPort<std::string>("person_z")};
+    }
+
 
     BT::NodeStatus tick();
 

@@ -4,16 +4,16 @@
     <BehaviorTree ID="BehaviorTree">
         <ReactiveSequence>
             <Fallback>
-              <Condition ID="PercievePerson"/>
+              <Condition ID="PercievePerson" person_x="{person_x}"/>
               <Action ID="Turn"/>
             </Fallback>
-            <Action ID="FollowPerson"/>
+            <Action ID="FollowPerson" person_x="{person_x}"/>
         </ReactiveSequence>
     </BehaviorTree>
     <!-- ////////// -->
     <TreeNodesModel>
-        <Condition ID="FollowPerson"/>
-        <Action ID="PercievePerson"/>
+        <Condition ID="FollowPerson" person_x="{person_x}"/>
+        <Action ID="PercievePerson" person_x="{person_x}"/>
         <Action ID="Turn"/>
     </TreeNodesModel>
     <!-- ////////// -->
