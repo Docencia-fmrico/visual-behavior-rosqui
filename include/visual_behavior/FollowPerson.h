@@ -19,6 +19,7 @@
 #include "behaviortree_cpp_v3/bt_factory.h"
 
 #include <string>
+#include <iostream>
 
 #include "geometry_msgs/Twist.h"
 #include "ros/ros.h"

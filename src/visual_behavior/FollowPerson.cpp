@@ -34,13 +34,19 @@ FollowPerson::tick()
 {
     ROS_INFO("FollowPerson tick");
 
-    /*std::string person_x = getInput<std::string>("person_x").value();
-    std::string person_z = getInput<std::string>("person_z").value();*/
+    std::string person_x = getInput<std::string>("person_x").value();
+    /*std::string person_z = getInput<std::string>("person_z").value();*/
 
     geometry_msgs::Twist cmd;
 
-    cmd.linear.x = 0.2;
-    cmd.angular.z = -0.4;
+    if (std::stod(person_x) < 235)
+      cmd.angular.z = -0.4;
+    else if (std::stod(person_x) > 305)
+      cmd.angular.z = 0.4;
+    else 
+      cmd.angular.z = 0;
+    
+    cmd.linear.x = 0.0;
    
 
     pub_vel_.publish(cmd);
