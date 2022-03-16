@@ -30,11 +30,16 @@ namespace visual_behavior
 class FollowBall : public BT::ActionNodeBase
 {
   public:
-    explicit FollowBall(const std::string& name);
+    explicit FollowBall(const std::string& name, const BT::NodeConfiguration & config);
 
     void halt();
 
     BT::NodeStatus tick();
+
+    static BT::PortsList providedPorts()
+    {
+        return { BT::InputPort<std::string>("person_x"), BT::InputPort<std::string>("person_z")};
+    }
 
   protected:
     ros::NodeHandle nh_;

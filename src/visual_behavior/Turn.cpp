@@ -13,42 +13,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "visual_behavior/Turn.h"
+#ifndef VISUAL_BEHAVIOR_TURN_H
+#define VISUAL_BEHAVIOR_TURN_H
+
+#include "behaviortree_cpp_v3/behavior_tree.h"
+#include "behaviortree_cpp_v3/bt_factory.h"
+
+#include <string>
+#include "geometry_msgs/Twist.h"
+#include "ros/ros.h"
 
 namespace visual_behavior
 {
 
-Turn::Turn(const std::string& name)
-: BT::ActionNodeBase(name, {})
+class Turn : public BT::ActionNodeBase
 {
-    pub_vel_ = nh_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity",100);
-}
+  public:
+    explicit Turn(const std::string& name);
 
-void
-Turn::halt()
-{
-  ROS_INFO("Turn halt");
-}
+    void halt();
 
-BT::NodeStatus
-Turn::tick()
-{
-  ROS_INFO("Turn tick");
-
-  geometry_msgs::Twist cmd;
-
-  cmd.linear.x = 0;
-  cmd.angular.z = TURN_VEL;
-
-  pub_vel_.publish(cmd);
-  
-  return BT::NodeStatus::FAILURE;
-}
+    BT::NodeStatus tick();
+  protected:
+    ros::NodeHandle nh_;
+    ros::Publisher pub_vel_;
+    static constexpr double TURN_VEL = 0;
+};
 
 }  // namespace visual_behavior
 
-#include "behaviortree_cpp_v3/bt_factory.h"
-BT_REGISTER_NODES(factory)
-{
-  factory.registerNodeType<visual_behavior::Turn>("Turn");
-}
+#endif  // VISUAL_BEHAVIOR_TURN_H

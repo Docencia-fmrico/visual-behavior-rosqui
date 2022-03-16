@@ -17,42 +17,42 @@
 namespace visual_behavior
 {
 
-FollowPerson::FollowBall(const std::string& name)
-: BT::ActionNodeBase(name, {})
+FollowBall::FollowBall(const std::string& name, const BT::NodeConfiguration & config)
+: BT::ActionNodeBase(name, config)
 {
   pub_vel_ = nh_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity",100);
 }
 
 void
-FollowPerson::halt()
+FollowBall::halt()
 {
   ROS_INFO("FollowBall halt");
 }
 
 BT::NodeStatus
-FollowPerson::tick()
+FollowBall::tick()
 {
     ROS_INFO("FollowBall tick");
 
     std::string person_x = getInput<std::string>("person_x").value();
     std::string person_z = getInput<std::string>("person_z").value();
 
-    geometry_msgs::Twist cmd;
-
-    if (std::stod(person_x) < 235)
+    ROS_INFO("X:%d Z:%d",person_x, person_z);
+    
+    /*geometry_msgs::Twist cmd;
+    if (person_x < 235)
       cmd.angular.z = -0.4;
-    else if (std::stod(person_x) > 305)
+    else if (person_x > 305)
       cmd.angular.z = 0.4;
     else 
       cmd.angular.z = 0;
     
-    if (std::stod(person_z) > 1)
+    /*if (std::stod(person_z) > 2)
       cmd.linear.x = 0.4;
     else
       cmd.linear.x = 0;
    
-
-    pub_vel_.publish(cmd);
+    pub_vel_.publish(cmd);*/
 
 
     return BT::NodeStatus::SUCCESS;

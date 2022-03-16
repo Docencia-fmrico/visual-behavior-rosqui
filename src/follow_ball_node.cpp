@@ -37,7 +37,6 @@ int main(int argc, char **argv)
   factory.registerFromPlugin(loader.getOSName("asr_percieve_ball_bt_node"));
 
   auto blackboard = BT::Blackboard::create();
-  
   blackboard->set("person_x", "person_z");
   
   std::string pkgpath = ros::package::getPath("visual_behavior");
@@ -53,8 +52,6 @@ int main(int argc, char **argv)
   while (ros::ok())
   {
     tree.rootNode()->executeTick();
-
-    ros::spinOnce();
     loop_rate.sleep();
   }
 
