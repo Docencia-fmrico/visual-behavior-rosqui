@@ -52,13 +52,14 @@ link_directories(
 	${PCL_LIBRARY_DIRS}
 )
 
+add_library(${PROJECT_NAME} src/PIDController.cpp)
 add_library(asr_follow_person_bt_node SHARED src/visual_behavior/FollowPerson.cpp)
 add_library(asr_turn_bt_node SHARED src/visual_behavior/Turn.cpp)
 add_library(asr_percieve_person_bt_node SHARED src/visual_behavior/PercievePerson.cpp)
 list(APPEND plugin_libs
   asr_follow_person_bt_node
   asr_turn_bt_node
-  asr_percieve_person_bt_node 
+  asr_percieve_person_bt_node
 )
 
 foreach(bt_plugin ${plugin_libs})
@@ -66,8 +67,8 @@ foreach(bt_plugin ${plugin_libs})
   target_compile_definitions(${bt_plugin} PRIVATE BT_PLUGIN_EXPORT)
 endforeach()
 
-add_executable(follow_person_node 
-  src/follow_person_node.cpp
+add_executable(
+  follow_person_node src/follow_person_node.cpp
 )
 target_link_libraries(follow_person_node ${catkin_LIBRARIES} ${ZMQ_LIBRARIES} ${OpenCV_LIBRARIES})
 
@@ -78,4 +79,5 @@ roslint_cpp(
   include/visual_behavior/FollowPerson.h src/visual_behavior/FollowPerson.cpp
   include/visual_behavior/PercievePerson.h src/visual_behavior/PercievePerson.cpp
   include/visual_behavior/Turn.h src/visual_behavior/Turn.cpp
+  include/visual_behavior/PIDController.hpp src/PIDController.cpp
 )
