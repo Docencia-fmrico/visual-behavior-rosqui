@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(visual_behavior)
 
+add_compile_options(-std=c++17)
+
 # set(CMAKE_BUILD_TYPE Debug)
 
 set(CMAKE_CONFIG_PATH ${CMAKE_MODULE_PATH}  "${CMAKE_CURRENT_LIST_DIR}/cmake")
