@@ -23,8 +23,8 @@
 namespace visual_behavior
 {
 
-PercievePerson::PercievePerson(const std::string& name)
-: BT::ActionNodeBase(name, {}),
+PercievePerson::PercievePerson(const std::string& name, const BT::NodeConfiguration & config)
+: BT::ActionNodeBase(name, config),
   nh_(),
   image_depth_sub(nh_, "/camera/depth/image_raw", 1),
   bbx_sub(nh_, "/darknet_ros/bounding_boxes", 1),
@@ -37,7 +37,6 @@ PercievePerson::PercievePerson(const std::string& name)
 void PercievePerson::callback_bbx(const sensor_msgs::ImageConstPtr& image,
 const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
 {
-  detected = true;
 
   cv_bridge::CvImagePtr img_ptr_depth;
   
@@ -49,18 +48,27 @@ const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
       ROS_ERROR("cv_bridge exception:  %s", e.what());
       return;
   }
-  
-  const auto & box = boxes->bounding_boxes[0];
 
-  int px = (box.xmax + box.xmin) / 2;
-  int py = (box.ymax + box.ymin) / 2;
+  int px = 0;
+  int py = 0;
+  float dist = 0;
+  // Darknet only detects person
+  for (const auto & box : boxes->bounding_boxes) {
+    ROS_INFO("PROB: %f", box.probability);
+    if ((box.probability > 0.5))
+    {
+      ROS_INFO("DETECTED TRUE");
+      detected = true;
+      px = (box.xmax + box.xmin) / 2;
+      py = (box.ymax + box.ymin) / 2;
 
-  float dist = img_ptr_depth->image.at<float>(cv::Point(px, py)) * 0.001f;
+      dist = img_ptr_depth->image.at<float>(cv::Point(px, py))*0.001f;
 
+      ROS_INFO("person_x: %d \t person_z: %f\n", px, dist);
+    }
+  }
   setOutput("person_x", px);
   setOutput("person_z", dist);
-
-  ROS_INFO("person_x: %d \t person_z: %f\n", px, dist);
 }
 
 void
@@ -72,8 +80,7 @@ PercievePerson::halt()
 BT::NodeStatus
 PercievePerson::tick()
 {
-  ROS_INFO("PercievePerson tick: %d", detected);
-
+  ros::spinOnce();
   if ( detected )
   {
     detected = false;
@@ -81,7 +88,7 @@ PercievePerson::tick()
   }
   else
   {
-    detected = false;
+    //ROS_INFO("Detected: FALSE");
     return BT::NodeStatus::FAILURE;
   }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <launch>
 
-  <node pkg="visual_behavior" type="follow_person_node" name="Follow_Person" output="screen"/>
+  <!--node pkg="visual_behavior" type="follow_person_node" name="Follow_Person" output="screen" launch-prefix="xterm -e"/-->
 
   <include file="$(find darknet_ros)/launch/darknet_ros.launch">
     <arg name="image" value="/camera/rgb/image_raw/"/>
