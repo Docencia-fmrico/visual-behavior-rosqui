@@ -45,14 +45,14 @@ FollowPerson::tick()
     geometry_msgs::Twist cmd;
 
     if (X < 235)
-      cmd.angular.z = -0.4;
+      cmd.angular.z = 0.35;
     else if (X > 305)
-      cmd.angular.z = 0.4;
+      cmd.angular.z = -0.35;
     else 
       cmd.angular.z = 0;
     
     if (Z > 2)
-      cmd.linear.x = 0.4;
+      cmd.linear.x = 0.2;
     else
       cmd.linear.x = 0;
    

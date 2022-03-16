@@ -36,7 +36,7 @@ class Turn : public BT::ActionNodeBase
   protected:
     ros::NodeHandle nh_;
     ros::Publisher pub_vel_;
-    static constexpr double TURN_VEL = 0;
+    static constexpr double TURN_VEL = 0.35;
 };
 
 }  // namespace visual_behavior

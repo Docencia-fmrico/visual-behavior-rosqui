@@ -56,7 +56,7 @@ const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
   // Darknet only detects person
   for (const auto & box : boxes->bounding_boxes) {
     ROS_INFO("PROB: %f", box.probability);
-    if ((box.probability > 0.5))
+    if ((box.probability > 0.75))
     {
       ROS_INFO("DETECTED TRUE");
       detected = true;
@@ -87,6 +87,8 @@ PercievePerson::tick()
   if(!detected) {
     counter++;
   }
+
+  ROS_INFO("counter: %d", counter);
 
   if ( detected )
   {
