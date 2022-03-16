@@ -56,6 +56,7 @@ class PercievePerson : public BT::ActionNodeBase
     darknet_ros_msgs::BoundingBoxes> MySyncPolicy_bbx;
     message_filters::Synchronizer<MySyncPolicy_bbx> sync_bbx;
     bool detected;
+    int counter;
 };
 
 }  // namespace visual_behavior
