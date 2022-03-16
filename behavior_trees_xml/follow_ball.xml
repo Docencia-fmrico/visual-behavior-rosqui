@@ -4,16 +4,22 @@
     <BehaviorTree ID="BehaviorTree">
         <ReactiveSequence>
             <Fallback>
-                <Action ID="PercieveBall"/>
+                <Action ID="PercieveBall" ball_x="{ball_x}" ball_z="{ball_z}"/>
                 <Action ID="Turn"/>
             </Fallback>
-            <Condition ID="FollowBall"/>
+            <Action ID="FollowBall" ball_x="{ball_x}" ball_z="{ball_z}"/>
         </ReactiveSequence>
     </BehaviorTree>
     <!-- ////////// -->
     <TreeNodesModel>
-        <Condition ID="FollowBall"/>
-        <Action ID="PercieveBall"/>
+        <Action ID="FollowBall">
+            <output_port name="ball_x">Mid X of BB</output_port>
+            <output_port name="ball_z">Depth of ball</output_port>
+        </Action>
+        <Action ID="PercieveBall">
+            <input_port name="ball_x">Mid X of BB</input_port>
+            <input_port name="ball_z">Depth of ball</input_port>
+        </Action>
         <Action ID="Turn"/>
     </TreeNodesModel>
     <!-- ////////// -->
