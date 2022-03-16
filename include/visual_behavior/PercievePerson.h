@@ -42,7 +42,7 @@ class PercievePerson : public BT::ActionNodeBase
 
     static BT::PortsList providedPorts()
     {
-        return { BT::InputPort<std::string>("person_x"), BT::InputPort<std::string>("person_z")};
+        return { BT::OutputPort<std::string>("person_z"), BT::OutputPort<std::string>("person_x")};
     }
 
 
@@ -56,6 +56,7 @@ class PercievePerson : public BT::ActionNodeBase
     darknet_ros_msgs::BoundingBoxes> MySyncPolicy_bbx;
     message_filters::Synchronizer<MySyncPolicy_bbx> sync_bbx;
     bool detected;
+    int counter;
 };
 
 }  // namespace visual_behavior

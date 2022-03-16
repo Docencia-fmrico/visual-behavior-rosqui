@@ -37,24 +37,27 @@ FollowPerson::tick()
     std::string person_x = getInput<std::string>("person_x").value();
     std::string person_z = getInput<std::string>("person_z").value();
 
-    ROS_INFO("X:%d Z:%d",person_x, person_z);
+    ROS_INFO("X:%s Z:%s",person_x.c_str(), person_z.c_str());
     
-    /*geometry_msgs::Twist cmd;
+    int X = std::stoi(person_x.c_str());
+    double Z = std::stod(person_z.c_str());
 
-    if (person_x < 235)
-      cmd.angular.z = -0.4;
-    else if (person_x > 305)
-      cmd.angular.z = 0.4;
+    geometry_msgs::Twist cmd;
+
+    if (X < 235)
+      cmd.angular.z = 0.35;
+    else if (X > 305)
+      cmd.angular.z = -0.35;
     else 
       cmd.angular.z = 0;
     
-    /*if (std::stod(person_z) > 2)
-      cmd.linear.x = 0.4;
+    if (Z > 2)
+      cmd.linear.x = 0.2;
     else
       cmd.linear.x = 0;
    
 
-    pub_vel_.publish(cmd);*/
+    pub_vel_.publish(cmd);
 
 
     return BT::NodeStatus::SUCCESS;

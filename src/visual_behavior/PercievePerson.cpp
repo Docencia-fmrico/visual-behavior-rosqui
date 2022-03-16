@@ -30,6 +30,7 @@ PercievePerson::PercievePerson(const std::string& name, const BT::NodeConfigurat
   bbx_sub(nh_, "/darknet_ros/bounding_boxes", 1),
   sync_bbx(MySyncPolicy_bbx(10), image_depth_sub, bbx_sub)
 {
+  counter = 0;
   detected = false;
   sync_bbx.registerCallback(boost::bind(&PercievePerson::callback_bbx, this, _1, _2));
 }
@@ -37,7 +38,7 @@ PercievePerson::PercievePerson(const std::string& name, const BT::NodeConfigurat
 void PercievePerson::callback_bbx(const sensor_msgs::ImageConstPtr& image,
 const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
 {
-
+  detected = false;
   cv_bridge::CvImagePtr img_ptr_depth;
   
   try{
@@ -55,7 +56,7 @@ const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
   // Darknet only detects person
   for (const auto & box : boxes->bounding_boxes) {
     ROS_INFO("PROB: %f", box.probability);
-    if ((box.probability > 0.5))
+    if ((box.probability > 0.75))
     {
       ROS_INFO("DETECTED TRUE");
       detected = true;
@@ -63,6 +64,9 @@ const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
       py = (box.ymax + box.ymin) / 2;
 
       dist = img_ptr_depth->image.at<float>(cv::Point(px, py))*0.001f;
+
+      if(isnan(dist))
+        dist = 0;
 
       ROS_INFO("person_x: %d \t person_z: %f\n", px, dist);
     }
@@ -80,16 +84,26 @@ PercievePerson::halt()
 BT::NodeStatus
 PercievePerson::tick()
 {
-  ros::spinOnce();
+  if(!detected) {
+    counter++;
+  }
+
+  ROS_INFO("counter: %d", counter);
+
   if ( detected )
   {
-    detected = false;
+    // Jumps to FollowPerson
+    counter = 0;
     return BT::NodeStatus::SUCCESS;
   }
-  else
+  else if((!detected) && (counter >= 3))
   {
+    // Jumps to turn
     //ROS_INFO("Detected: FALSE");
     return BT::NodeStatus::FAILURE;
+
+  } else {
+    return BT::NodeStatus::RUNNING;
   }
 }
 
