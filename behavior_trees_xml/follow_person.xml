@@ -4,10 +4,10 @@
     <BehaviorTree ID="BehaviorTree">
         <ReactiveSequence>
             <Fallback>
-                <Action ID="PercievePerson" person_x="" person_z=""/>
+                <Action ID="PercievePerson" person_x="{person_x}" person_z="{person_z}"/>
                 <Action ID="Turn"/>
             </Fallback>
-            <Action ID="FollowPerson" person_x="" person_z=""/>
+            <Action ID="FollowPerson" person_x="{person_x}" person_z="{person_z}"/>
         </ReactiveSequence>
     </BehaviorTree>
     <!-- ////////// -->

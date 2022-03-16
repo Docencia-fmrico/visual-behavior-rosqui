@@ -64,6 +64,9 @@ const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
 
       dist = img_ptr_depth->image.at<float>(cv::Point(px, py))*0.001f;
 
+      if(isnan(dist))
+        dist = 0;
+
       ROS_INFO("person_x: %d \t person_z: %f\n", px, dist);
     }
   }
@@ -80,7 +83,6 @@ PercievePerson::halt()
 BT::NodeStatus
 PercievePerson::tick()
 {
-  ros::spinOnce();
   if ( detected )
   {
     detected = false;
