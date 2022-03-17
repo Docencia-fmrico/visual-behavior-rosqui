@@ -58,7 +58,7 @@ const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
   for (const auto & box : boxes->bounding_boxes)
   {
     ROS_INFO("PROB: %f", box.probability);
-    if ((box.probability > 0.75) && (box.probability > prob))
+    if ((box.probability > 0.2) && (box.probability > prob))
     {
       prob = box.probability;
       ROS_INFO("DETECTED TRUE");
@@ -66,7 +66,7 @@ const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
       px = (box.xmax + box.xmin) / 2;
       py = (box.ymax + box.ymin) / 2;
 
-      dist = img_ptr_depth->image.at<float>(cv::Point(px, py))*0.001f;
+      dist = img_ptr_depth->image.at<float>(cv::Point(px, py));//*0.001f;
       if (isnan(dist))
         dist = 0;
 

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(visual_behavior)
 
-add_compile_options(-std=c++17)
+set(CMAKE_CXX_STANDARD 17)
 
 # set(CMAKE_BUILD_TYPE Debug)
 
@@ -54,7 +54,7 @@ link_directories(
 	${PCL_LIBRARY_DIRS}
 )
 
-add_library(${PROJECT_NAME} src/PIDController.cpp)
+add_library(visual_behavior src/visual_behavior/PIDController.cpp)
 add_library(asr_follow_person_bt_node SHARED src/visual_behavior/FollowPerson.cpp)
 add_library(asr_turn_bt_node SHARED src/visual_behavior/Turn.cpp)
 add_library(asr_percieve_person_bt_node SHARED src/visual_behavior/PercievePerson.cpp)
@@ -69,18 +69,14 @@ list(APPEND plugin_libs
 )
 
 foreach(bt_plugin ${plugin_libs})
-  target_link_libraries(${bt_plugin} ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+  target_link_libraries(${bt_plugin} ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} visual_behavior)
   target_compile_definitions(${bt_plugin} PRIVATE BT_PLUGIN_EXPORT)
 endforeach()
 
-add_executable(
-  follow_person_node src/follow_person_node.cpp
-)
+add_executable(follow_person_node src/follow_person_node.cpp)
 target_link_libraries(follow_person_node ${catkin_LIBRARIES} ${ZMQ_LIBRARIES} ${OpenCV_LIBRARIES})
 
-add_executable(
-  follow_ball_node src/follow_ball_node.cpp
-)
+add_executable(follow_ball_node src/follow_ball_node.cpp)
 target_link_libraries(follow_ball_node ${catkin_LIBRARIES} ${ZMQ_LIBRARIES} ${OpenCV_LIBRARIES})
 
 set(cv_bridge_DIR /usr/local/share/cv_bridge/cmake)
@@ -93,5 +89,5 @@ roslint_cpp(
   include/visual_behavior/FollowPerson.h src/visual_behavior/FollowBall.cpp
   include/visual_behavior/PercievePerson.h src/visual_behavior/PercieveBall.cpp
   include/visual_behavior/Turn.h src/visual_behavior/Turn.cpp
-  include/visual_behavior/PIDController.h src/PIDController.cpp
+  include/visual_behavior/PIDController.h src/visual_behavior/PIDController.cpp
 )
