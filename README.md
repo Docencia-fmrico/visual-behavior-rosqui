@@ -22,13 +22,9 @@ First of all we have done a behaviour tree called <b>follow_person.xml</b>. Usin
 <details><summary><b>Instalation</b></summary>
 For this task we had to install the following packages:
     
-    
     $ sudo apt-get install ros-noetic-behaviortree-cpp-v3
     $ sudo apt-get install ros-noetic-move-base-msgs
     $ sudo apt-get install ros-noetic-kobuki-*
-    $ sudo apt-get install openni2-*
-    $ sudo apt-get install ros-noetic-rgbd-launch 
-    $ sudo apt-get install --fix-missing ros-noetic-rgbd-launch
     $ sudo apt-get install ros-noetic-cameras-*
     
 If you want to try it by your own personal camera, you can download the following package:
@@ -68,7 +64,7 @@ alt="Follow person bt" width="600" height="600">
 
 And this is how it looks like in <a href="https://github.com/BehaviorTree/Groot">Groot</a>:
 
-<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/groot_fp_bt.gif" align="center"
+<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/follow_person_groot.png" align="center"
 alt="Follow person bt groot" width="600" height="600">
         
     
@@ -89,6 +85,11 @@ alt="Darknet Filtered" width="700" height="400">
 First of all we have done a behaviour tree called <b>follow_ball.xml</b>. Using <b>Funcion Transformations</b>, a 3D camera and a color filter we can detect and follow a colored ball. 
     
 <details><summary><b>Instalation</b></summary>
+For this task we had to install the following packages:
+
+    $ sudo apt-get install openni2-*
+    $ sudo apt-get install ros-noetic-rgbd-launch 
+    $ sudo apt-get install --fix-missing ros-noetic-rgbd-launch
  
 </details>
     
@@ -111,7 +112,7 @@ First of all we have done a behaviour tree called <b>follow_ball.xml</b>. Using 
     
  - <b>Filter Ball using rviz</b>
     
-     You should follow the followings steps:
+    You should follow the followings steps:
     
         $ roslaunch robots sim.launch
         $ rosrun cameras_cpp nodo_camera (filter image)
@@ -120,7 +121,6 @@ First of all we have done a behaviour tree called <b>follow_ball.xml</b>. Using 
         $ rviz (and choose 0 channel)
         $ roslaunch kobuki_keyop keyop.launch (for moving in the simulation and the image)
       
-    
 </details>
     
 <details><summary><b>Behaviour tree</b></summary>
@@ -132,12 +132,6 @@ alt="Follow ball bt" width="600" height="600">
 
 And this is how it looks like in <a href="https://github.com/BehaviorTree/Groot">Groot</a>:
 
-<img src="" align="center"
+<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/follow_ball_groot.png" align="center"
 alt="Follow ball bt groot" width="600" height="600">
-</details>
-
-<h2>FOLLOW BOTH</h2>
-
-<details><summary><b>Behaviour tree</b></summary>
-</details>
 
