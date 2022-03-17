@@ -21,7 +21,11 @@ namespace visual_behavior
 FollowBall::FollowBall(const std::string& name, const BT::NodeConfiguration & config)
 : BT::ActionNodeBase(name, config)
 {
+<<<<<<< HEAD
   pub_vel_ = nh_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity", 100);
+=======
+  vel_pub_ = nh_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity", 100);
+>>>>>>> main
 }
 
 void
@@ -37,13 +41,18 @@ FollowBall::tick()
 
     std::string ball_x = getInput<std::string>("ball_x").value();
     std::string ball_z = getInput<std::string>("ball_z").value();
+<<<<<<< HEAD
 
     ROS_INFO("X:%s Z:%s", ball_x.c_str(), ball_z.c_str());
+=======
+    
+>>>>>>> main
     int X = std::stoi(ball_x.c_str());
     double Z = std::stod(ball_z.c_str());
 
-    geometry_msgs::Twist cmd;
+    geometry_msgs::Twist vel_msgs_;
 
+<<<<<<< HEAD
     if (X < 235)
       cmd.angular.z = 0.35;
     else if (X > 305)
@@ -54,9 +63,17 @@ FollowBall::tick()
       cmd.linear.x = 0.2;
     else
       cmd.linear.x = 0;
+=======
+    vel_msgs_.angular.z = X;
+>>>>>>> main
 
-    pub_vel_.publish(cmd);
+    vel_msgs_.linear.x = Z;
 
+<<<<<<< HEAD
+=======
+    vel_pub_.publish(vel_msgs_);
+
+>>>>>>> main
     return BT::NodeStatus::SUCCESS;
 }
 

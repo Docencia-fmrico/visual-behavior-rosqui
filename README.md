@@ -6,16 +6,18 @@
      alt="Kobuki Image" width="270" height="200">
     
 
-<h1>VISUAL BEHAVIOUR</h1>
-
-<p> We were asked to complete the following task which, in this case we were obliged to use <b>behaviour trees</b>, a different way of approaching the solution of these exercises instead of using finite state machine.
- </p>
-
-This task is called visual navigation as we have had to handle 3 exercises:
+<h1>VISUAL BEHAVIOR</h1>
+ 
+ <p> We were asked to complete three different tasks using <b>behaviour trees</b> instead of a finite-state machine. </p>
+ 
+ <b>FollowPerson</b>: The Kobuki has to detect and follow the closest person in range.
+ 
+ <b>FollowBall</b>: The Kobuki has to detect and follow a colored ball.
+ 
+ <b>FollowBoth</b>: The Kobuki has to detect both the person and the ball and follow them, priorizing the ball.
 
 <h2>FOLLOW PERSON</h2>
-First of all we have done a behaviour tree called <b>follow person</b>. As you can see, by its name we can know that the task it performs is following a person. 
-We used darknet ros filtered just only for people.
+First of all we have done a behaviour tree called <b>follow_person.xml</b>. Using Darknet_ros with a 3D camera we can obtain all x, y and z coordinates of a person. 
 
 <details><summary><b>Instalation</b></summary>
 For this task we had to install the following packages:
@@ -61,31 +63,77 @@ By the way, if you get in trouble with any package you may need to download a gi
     
 This is the tree we have decided to use:
  
-<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/follow_person_bt.gif" align="center"
+<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/bt_fb.gif" align="center"
 alt="Follow person bt" width="600" height="600">
 
 And this is how it looks like in <a href="https://github.com/BehaviorTree/Groot">Groot</a>:
 
 <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/groot_fp_bt.gif" align="center"
-alt="Follow person bt" width="600" height="600">
+alt="Follow person bt groot" width="600" height="600">
         
     
 </details>
 
 <details><summary><b>Filtered Darknet Ros</b></summary>
- We want to outline that using the Darknet Ros <a href="https://github.com/leggedrobotics/darknet_ros">github repo</a> only for people, we had to edit all yamls and we just left <b>person</b> in <b>detection clases names</b> 
+We would like to point out that when using <a href="https://github.com/leggedrobotics/darknet_ros">Darknet_ros</a> only for people, we had to edit all .yaml files. We just left <b>person</b> in <b>detection clases names</b>
+    
+Here you can see a picture of it:
+    
+<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/darknet_filtered.jpg" align="center"
+alt="Darknet Filtered" width="700" height="400">
+    
+    
 </details>
  
 <h2>FOLLOW BALL</h2>
+First of all we have done a behaviour tree called <b>follow_ball.xml</b>. Using <b>Funcion Transformations</b>, a 3D camera and a color filter we can detect and follow a colored ball. 
     
 <details><summary><b>Instalation</b></summary>
-    
+ 
 </details>
     
 <details><summary><b>Commands Used</b></summary>
+        
+- <b>Filter Ball using 3D camera</b>
+    
+    You should follow the followings steps:
+    
+        $ roslaunch openni2_launch openni2.launch
+        $ rosrun cameras_cpp nodo_camera (filter image)
+        $ rviz 
+    
+    In rviz add image and its topic is /hsv/image_filtered/
+    And these are the values used for filtering the ball:
+    
+    <img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/ball_filtered.jpg" align="center"
+    alt="Ball filtered" width="600" height="600">
+    
+    
+ - <b>Filter Ball using rviz</b>
+    
+     You should follow the followings steps:
+    
+        $ roslaunch robots sim.launch
+        $ rosrun cameras_cpp nodo_camera (filter image)
+        $ rosrun cameras_cpp nodo_rgbd_filtered (publish in the image filtered topic)
+        $ roslaunch robots kobuki_xtion.launch (makes the transform)
+        $ rviz (and choose 0 channel)
+        $ roslaunch kobuki_keyop keyop.launch (for moving in the simulation and the image)
+      
+    
 </details>
     
 <details><summary><b>Behaviour tree</b></summary>
+
+This is the tree we have decided to use:
+ 
+<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/bt_fp.gif" align="center"
+alt="Follow ball bt" width="600" height="600">
+
+And this is how it looks like in <a href="https://github.com/BehaviorTree/Groot">Groot</a>:
+
+<img src="" align="center"
+alt="Follow ball bt groot" width="600" height="600">
 </details>
 
 <h2>FOLLOW BOTH</h2>

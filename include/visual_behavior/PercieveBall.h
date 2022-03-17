@@ -21,10 +21,19 @@
 #include <message_filters/time_synchronizer.h>
 #include <message_filters/sync_policies/approximate_time.h>
 
+#include "tf2/transform_datatypes.h"
+#include "tf2_ros/transform_listener.h"
+#include "tf2/LinearMath/Transform.h"
+#include "geometry_msgs/TransformStamped.h"
+#include "tf2_geometry_msgs/tf2_geometry_msgs.h"
+#include "tf2/convert.h"
+#include "geometry_msgs/Twist.h"
+
+#include "visual_behavior/transforms.h"
+
 #include <cv_bridge/cv_bridge.h>
 
 #include <sensor_msgs/Image.h>
-#include <darknet_ros_msgs/BoundingBoxes.h>
 
 #include <string>
 
@@ -35,8 +44,6 @@ class PercieveBall : public BT::ActionNodeBase
 {
   public:
     explicit PercieveBall(const std::string& name, const BT::NodeConfiguration & config);
-    void callback_ball(const sensor_msgs::ImageConstPtr& image,
-    const darknet_ros_msgs::BoundingBoxesConstPtr& boxes);
 
     void halt();
 
@@ -45,18 +52,10 @@ class PercieveBall : public BT::ActionNodeBase
         return { BT::OutputPort<std::string>("ball_z"), BT::OutputPort<std::string>("ball_x")};
     }
 
-
     BT::NodeStatus tick();
 
   private:
     ros::NodeHandle nh_;
-    message_filters::Subscriber<sensor_msgs::Image> image_depth_sub;
-    message_filters::Subscriber<darknet_ros_msgs::BoundingBoxes> bbx_sub;
-    typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::Image,
-    darknet_ros_msgs::BoundingBoxes> MySyncPolicy_bbx;
-    message_filters::Synchronizer<MySyncPolicy_bbx> sync_bbx;
-    bool detected;
-    int counter;
 };
 
 }  // namespace visual_behavior

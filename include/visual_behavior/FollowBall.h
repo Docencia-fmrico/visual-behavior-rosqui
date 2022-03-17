@@ -43,7 +43,7 @@ class FollowBall : public BT::ActionNodeBase
 
   protected:
     ros::NodeHandle nh_;
-    ros::Publisher pub_vel_;
+    ros::Publisher vel_pub_;
 };
 
 }  // namespace visual_behavior

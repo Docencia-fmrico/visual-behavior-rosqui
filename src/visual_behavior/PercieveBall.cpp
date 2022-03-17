@@ -25,57 +25,9 @@ namespace visual_behavior
 
 PercieveBall::PercieveBall(const std::string& name, const BT::NodeConfiguration & config)
 : BT::ActionNodeBase(name, config),
-  nh_(),
-  image_depth_sub(nh_, "/camera/depth/image_raw", 1),
-  bbx_sub(nh_, "/darknet_ros/bounding_boxes", 1),
-  sync_bbx(MySyncPolicy_bbx(10), image_depth_sub, bbx_sub)
+  nh_()
 {
-  counter = 0;
-  detected = false;
-  sync_bbx.registerCallback(boost::bind(&PercieveBall::callback_ball, this, _1, _2));
-}
-
-void PercieveBall::callback_ball(const sensor_msgs::ImageConstPtr& image,
-const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
-{
-  detected = false;
-  cv_bridge::CvImagePtr img_ptr_depth;
-  try
-  {
-      img_ptr_depth = cv_bridge::toCvCopy(*image, sensor_msgs::image_encodings::TYPE_32FC1);
-  }
-  catch (cv_bridge::Exception& e)
-  {
-      ROS_ERROR("cv_bridge exception:  %s", e.what());
-      return;
-  }
-
-  int px = 0;
-  int py = 0;
-  float dist = 0;
-  float prob = 0;
-  // Darknet only detects person
-  for (const auto & box : boxes->bounding_boxes)
-  {
-    ROS_INFO("PROB: %f", box.probability);
-    if ((box.probability > 0.75) && (box.probability > prob))
-    {
-      prob = box.probability;
-      ROS_INFO("DETECTED TRUE");
-      detected = true;
-      px = (box.xmax + box.xmin) / 2;
-      py = (box.ymax + box.ymin) / 2;
-
-      dist = img_ptr_depth->image.at<float>(cv::Point(px, py))*0.001f;
-
-      if (isnan(dist) )
-        dist = 0;
-
-      ROS_INFO("ball_x: %d \t ball_z: %f\n", px, dist);
-    }
-  }
-  setOutput("ball_x", px);
-  setOutput("ball_z", dist);
+    ROS_INFO("PERCIEVE BALL");
 }
 
 void
@@ -86,30 +38,48 @@ PercieveBall::halt()
 
 BT::NodeStatus
 PercieveBall::tick()
-{
-  if ( !detected )
-  {
-    counter++;
-  }
+{   
+    ROS_INFO("PERCIEVE BALL TICK");
+    tf2_ros::Buffer buffer_;
+    tf2_ros::TransformListener listener(buffer_);
+    geometry_msgs::TransformStamped bf2ball_msg;
+    tf2::Stamped<tf2::Transform> bf2ball;
+    std::string error;
+    if (buffer_.canTransform("base_footprint", "object/0", ros::Time(0), ros::Duration(0.1), &error))
+    {
+      bf2ball_msg = buffer_.lookupTransform("base_footprint", "object/0", ros::Time(0));
 
-  ROS_INFO("counter: %d", counter);
+      tf2::fromMsg(bf2ball_msg, bf2ball);
 
-  if ( detected )
-  {
-    // Jumps to FollowPerson
-    counter = 0;
-    return BT::NodeStatus::SUCCESS;
-  }
-  else if ( (!detected ) && (counter >= 3) )
-  {
-    // Jumps to turn
-    // ROS_INFO("Detected: FALSE");
-    return BT::NodeStatus::FAILURE;
-  }
-  else
-  {
-    return BT::NodeStatus::RUNNING;
-  }
+      double dist = bf2ball.getOrigin().length();
+      double angle = atan2(bf2ball.getOrigin().y(), bf2ball.getOrigin().x());
+
+      ROS_INFO("base_footprint -> ball [%lf, %lf] dist = %lf  angle = %lf       %lf ago",
+        bf2ball.getOrigin().x(),
+        bf2ball.getOrigin().y(),
+        dist,
+        angle,
+        (ros::Time::now() - bf2ball.stamp_).toSec());
+
+        geometry_msgs::Twist vel_msgs;
+
+        if (dist > 2)
+          dist = 2;
+
+        vel_msgs.linear.x = dist - 1.0; 
+        vel_msgs.angular.z = angle;
+
+        setOutput("ball_x", dist);
+        setOutput("ball_z", angle);
+
+        return BT::NodeStatus::SUCCESS;
+    }
+    else
+    {
+      ROS_ERROR("%s", error.c_str());
+      return BT::NodeStatus::FAILURE;
+    }
+
 }
 
 }  // namespace visual_behavior

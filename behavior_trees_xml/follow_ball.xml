@@ -14,11 +14,11 @@
     <TreeNodesModel>
         <Action ID="FollowBall">
             <output_port name="ball_x">Mid X of BB</output_port>
-            <output_port name="ball_z">Depth of ball</output_port>
+            <output_port name="ball_z">Depth of Ball</output_port>
         </Action>
         <Action ID="PercieveBall">
             <input_port name="ball_x">Mid X of BB</input_port>
-            <input_port name="ball_z">Depth of ball</input_port>
+            <input_port name="ball_z">Depth of Ball</input_port>
         </Action>
         <Action ID="Turn"/>
     </TreeNodesModel>
