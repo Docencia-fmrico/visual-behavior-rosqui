@@ -39,7 +39,6 @@ int main(int argc, char **argv)
   auto blackboard = BT::Blackboard::create();
   blackboard->set("ball_x", "X");
   blackboard->set("ball_z", "Z");
-  
   std::string pkgpath = ros::package::getPath("visual_behavior");
   std::string xml_file = pkgpath + "/behavior_trees_xml/follow_ball.xml";
 
