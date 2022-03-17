@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "visual_behavior/FollowBall.h"
+#include <string>
 
 namespace visual_behavior
 {
@@ -20,7 +21,7 @@ namespace visual_behavior
 FollowBall::FollowBall(const std::string& name, const BT::NodeConfiguration & config)
 : BT::ActionNodeBase(name, config)
 {
-  pub_vel_ = nh_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity",100);
+  pub_vel_ = nh_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity", 100);
 }
 
 void
@@ -37,8 +38,7 @@ FollowBall::tick()
     std::string ball_x = getInput<std::string>("ball_x").value();
     std::string ball_z = getInput<std::string>("ball_z").value();
 
-    ROS_INFO("X:%s Z:%s",ball_x.c_str(), ball_z.c_str());
-    
+    ROS_INFO("X:%s Z:%s", ball_x.c_str(), ball_z.c_str());
     int X = std::stoi(ball_x.c_str());
     double Z = std::stod(ball_z.c_str());
 
@@ -48,17 +48,14 @@ FollowBall::tick()
       cmd.angular.z = 0.35;
     else if (X > 305)
       cmd.angular.z = -0.35;
-    else 
+    else
       cmd.angular.z = 0;
-    
     if (Z > 2)
       cmd.linear.x = 0.2;
     else
       cmd.linear.x = 0;
-   
 
     pub_vel_.publish(cmd);
-
 
     return BT::NodeStatus::SUCCESS;
 }

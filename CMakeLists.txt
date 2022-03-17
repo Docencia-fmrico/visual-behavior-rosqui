@@ -93,5 +93,5 @@ roslint_cpp(
   include/visual_behavior/FollowPerson.h src/visual_behavior/FollowBall.cpp
   include/visual_behavior/PercievePerson.h src/visual_behavior/PercieveBall.cpp
   include/visual_behavior/Turn.h src/visual_behavior/Turn.cpp
-  include/visual_behavior/PIDController.hpp src/PIDController.cpp
+  include/visual_behavior/PIDController.h src/PIDController.cpp
 )

@@ -9,18 +9,20 @@
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
+// See the License for the specific674b3e6 language governing permissions and
 // limitations under the License.
 
 #include "visual_behavior/FollowPerson.h"
+#include "visual_behavior/PIDController.h"
+#include <string>
 
 namespace visual_behavior
 {
 
 FollowPerson::FollowPerson(const std::string& name, const BT::NodeConfiguration & config)
-: BT::ActionNodeBase(name, config)
+: BT::ActionNodeBase(name, config), linear_pid_(0.0, 1.0, 0.0, 0.3), angular_pid_(0.0, 1.0, 0.0, 0.5)
 {
-  pub_vel_ = nh_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity",100);
+  pub_vel_ = nh_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity", 100);
 }
 
 void
@@ -37,8 +39,7 @@ FollowPerson::tick()
     std::string person_x = getInput<std::string>("person_x").value();
     std::string person_z = getInput<std::string>("person_z").value();
 
-    ROS_INFO("X:%s Z:%s",person_x.c_str(), person_z.c_str());
-    
+    ROS_INFO("X:%s Z:%s", person_x.c_str(), person_z.c_str());
     int X = std::stoi(person_x.c_str());
     double Z = std::stod(person_z.c_str());
 
@@ -48,17 +49,14 @@ FollowPerson::tick()
       cmd.angular.z = 0.35;
     else if (X > 305)
       cmd.angular.z = -0.35;
-    else 
+    else
       cmd.angular.z = 0;
-    
     if (Z > 2)
       cmd.linear.x = 0.2;
     else
       cmd.linear.x = 0;
-   
 
     pub_vel_.publish(cmd);
-
 
     return BT::NodeStatus::SUCCESS;
 }
