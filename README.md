@@ -18,7 +18,6 @@
 
 <h2>FOLLOW PERSON</h2>
 First of all we have done a behaviour tree called <b>follow_person.xml</b>. Using Darknet_ros with a 3D camera we can obtain all x, y and z coordinates of a person. 
-We modified the .yaml files of darknet_ros so only people are detected.
 
 <details><summary><b>Instalation</b></summary>
 For this task we had to install the following packages:
@@ -76,7 +75,7 @@ alt="Follow person bt groot" width="600" height="600">
 </details>
 
 <details><summary><b>Filtered Darknet Ros</b></summary>
- We want to outline that using the Darknet Ros <a href="https://github.com/leggedrobotics/darknet_ros">github repo</a> only for people, we had to edit all yamls and we just left <b>person</b> in <b>detection clases names</b> 
+We would like to point out that when using <a href="https://github.com/leggedrobotics/darknet_ros">Darknet_ros</a> only for people, we had to edit all .yaml files. We just left <b>person</b> in <b>detection clases names</b>
     
 Here you can see a picture of it:
     
