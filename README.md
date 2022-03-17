@@ -7,15 +7,18 @@
     
 
 <h1>VISUAL BEHAVIOUR</h1>
-
-<p> We were asked to complete the following task which, in this case we were obliged to use <b>behaviour trees</b>, a different way of approaching the solution of these exercises instead of using finite state machine.
- </p>
-
-This task is called visual navigation as we have had to handle 3 exercises:
+ 
+ <p> We were asked to complete three different tasks using <b>behaviour trees</b> instead of a finite-state machine. </p>
+ 
+ <b>FollowPerson</b>: The Kobuki has to detect and follow the closest person in range.
+ 
+ <b>FollowBall</b>: The Kobuki has to detect and follow a colored ball.
+ 
+ <b>FollowBoth</b>: The Kobuki has to detect both the person and the ball and follow them, priorizing the ball.
 
 <h2>FOLLOW PERSON</h2>
-First of all we have done a behaviour tree called <b>follow person</b>. As you can see, by its name we can know that the task it performs is following a person. 
-We used darknet ros filtered just only for people.
+First of all we have done a behaviour tree called <b>follow_person.xml</b>. Using Darknet_ros with a 3D camera we can obtain all x, y and z coordinates of a person. 
+We modified the .yaml files of darknet_ros so only people are detected.
 
 <details><summary><b>Instalation</b></summary>
 For this task we had to install the following packages:
@@ -84,12 +87,10 @@ alt="Darknet Filtered" width="700" height="400">
 </details>
  
 <h2>FOLLOW BALL</h2>
-First of all we have done a behaviour tree called <b>follow ball</b>. As you can see, by its name we can know that the task it performs is following a ball. 
-We used .
+First of all we have done a behaviour tree called <b>follow_ball.xml</b>. Using <b>Funcion Transformations</b>, a 3D camera and a color filter we can detect and follow a colored ball. 
     
 <details><summary><b>Instalation</b></summary>
  
-    
 </details>
     
 <details><summary><b>Commands Used</b></summary>
