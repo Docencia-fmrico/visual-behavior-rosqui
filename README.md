@@ -6,7 +6,7 @@
      alt="Kobuki Image" width="270" height="200">
     
 
-<h1>VISUAL BEHAVIOUR</h1>
+<h1>VISUAL BEHAVIOR</h1>
  
  <p> We were asked to complete three different tasks using <b>behaviour trees</b> instead of a finite-state machine. </p>
  
