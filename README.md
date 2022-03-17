@@ -59,12 +59,12 @@ By the way, if you get in trouble with any package you may need to download a gi
     
 This is the tree we have decided to use:
  
-<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/bt_fb.gif" align="center"
+<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/julia/images/bt_fp.gif" align="center"
 alt="Follow person bt" width="600" height="600">
 
 And this is how it looks like in <a href="https://github.com/BehaviorTree/Groot">Groot</a>:
 
-<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/follow_person_groot.png" align="center"
+<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/julia/images/follow_person_groot.png" align="center"
 alt="Follow person bt groot" width="600" height="600">
         
     
@@ -132,6 +132,6 @@ alt="Follow ball bt" width="600" height="600">
 
 And this is how it looks like in <a href="https://github.com/BehaviorTree/Groot">Groot</a>:
 
-<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/follow_ball_groot.png" align="center"
+<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/julia/images/follow_ball_groot.png" align="center"
 alt="Follow ball bt groot" width="600" height="600">
 
