@@ -44,17 +44,34 @@ FollowPerson::tick()
     double Z = std::stod(person_z.c_str());
 
     geometry_msgs::Twist cmd;
+    angular_pid_.set_pid(0.4, 0.05, 0.55);
+    linear_pid_.set_pid(0.4, 0.05, 0.55);
 
     if (X < 235)
-      cmd.angular.z = 0.35;
+    {
+      cmd.angular.z = angular_pid_.get_output(0.35);
+      // cmd.angular.z = 0.35;
+    }
     else if (X > 305)
-      cmd.angular.z = -0.35;
+    {
+      cmd.angular.z = angular_pid_.get_output(-0.35);
+      // cmd.angular.z = -0.35;
+    }
     else
-      cmd.angular.z = 0;
+    {
+      cmd.angular.z = angular_pid_.get_output(0);
+      // cmd.angular.z = 0;
+    }
     if (Z > 2)
-      cmd.linear.x = 0.2;
+    {
+      cmd.linear.x = linear_pid_.get_output(0.2);
+      // cmd.linear.x = 0.2;
+    }
     else
-      cmd.linear.x = 0;
+    {
+      cmd.linear.x = linear_pid_.get_output(0);
+      // cmd.linear.x = 0;
+    }
 
     pub_vel_.publish(cmd);
 
