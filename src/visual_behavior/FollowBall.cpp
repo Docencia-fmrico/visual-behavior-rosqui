@@ -20,7 +20,7 @@ namespace visual_behavior
 FollowBall::FollowBall(const std::string& name, const BT::NodeConfiguration & config)
 : BT::ActionNodeBase(name, config)
 {
-  pub_vel_ = nh_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity",100);
+  vel_pub_ = nh_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity", 100);
 }
 
 void
@@ -36,29 +36,17 @@ FollowBall::tick()
 
     std::string ball_x = getInput<std::string>("ball_x").value();
     std::string ball_z = getInput<std::string>("ball_z").value();
-
-    ROS_INFO("X:%s Z:%s",ball_x.c_str(), ball_z.c_str());
     
     int X = std::stoi(ball_x.c_str());
     double Z = std::stod(ball_z.c_str());
 
-    geometry_msgs::Twist cmd;
+    geometry_msgs::Twist vel_msgs_;
 
-    if (X < 235)
-      cmd.angular.z = 0.35;
-    else if (X > 305)
-      cmd.angular.z = -0.35;
-    else 
-      cmd.angular.z = 0;
-    
-    if (Z > 2)
-      cmd.linear.x = 0.2;
-    else
-      cmd.linear.x = 0;
-   
+    vel_msgs_.angular.z = X;
 
-    pub_vel_.publish(cmd);
+    vel_msgs_.linear.x = Z;
 
+    vel_pub_.publish(vel_msgs_);
 
     return BT::NodeStatus::SUCCESS;
 }

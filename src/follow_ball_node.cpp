@@ -44,9 +44,9 @@ int main(int argc, char **argv)
   std::string xml_file = pkgpath + "/behavior_trees_xml/follow_ball.xml";
 
   BT::Tree tree = factory.createTreeFromFile(xml_file, blackboard);
-  auto publisher_zmq = std::make_shared<BT::PublisherZMQ>(tree, 10, 1666, 1667);
+  auto publisher_zmq = std::make_shared<BT::PublisherZMQ>(tree, 1, 1666, 1667);
 
-  ros::Rate loop_rate(10);
+  ros::Rate loop_rate(1);
 
   int count = 0;
 
