@@ -53,11 +53,14 @@ const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
   int px = 0;
   int py = 0;
   float dist = 0;
+  float prob = 0;
+  
   // Darknet only detects person
   for (const auto & box : boxes->bounding_boxes) {
     ROS_INFO("PROB: %f", box.probability);
-    if ((box.probability > 0.75))
+    if ((box.probability > 0.75) && (box.probability > prob))
     {
+      prob = box.probability;
       ROS_INFO("DETECTED TRUE");
       detected = true;
       px = (box.xmax + box.xmin) / 2;
