@@ -35,7 +35,7 @@ class PercieveBall : public BT::ActionNodeBase
 {
   public:
     explicit PercieveBall(const std::string& name, const BT::NodeConfiguration & config);
-    void callback_bbx(const sensor_msgs::ImageConstPtr& image,
+    void callback_ball(const sensor_msgs::ImageConstPtr& image,
     const darknet_ros_msgs::BoundingBoxesConstPtr& boxes);
 
     void halt();

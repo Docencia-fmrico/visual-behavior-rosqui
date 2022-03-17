@@ -32,10 +32,10 @@ PercieveBall::PercieveBall(const std::string& name, const BT::NodeConfiguration 
 {
   counter = 0;
   detected = false;
-  sync_bbx.registerCallback(boost::bind(&PercieveBall::callback_bbx, this, _1, _2));
+  sync_bbx.registerCallback(boost::bind(&PercieveBall::callback_ball, this, _1, _2));
 }
 
-void PercieveBall::callback_bbx(const sensor_msgs::ImageConstPtr& image,
+void PercieveBall::callback_ball(const sensor_msgs::ImageConstPtr& image,
 const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
 {
   detected = false;
