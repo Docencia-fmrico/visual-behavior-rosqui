@@ -40,7 +40,6 @@ const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
 {
   detected = false;
   cv_bridge::CvImagePtr img_ptr_depth;
-
   try
   {
       img_ptr_depth = cv_bridge::toCvCopy(*image, sensor_msgs::image_encodings::TYPE_32FC1);
@@ -59,7 +58,7 @@ const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
   for (const auto & box : boxes->bounding_boxes)
   {
     ROS_INFO("PROB: %f", box.probability);
-    if ((box.probability > 0.75) && (box.probability > prob))
+    if ((box.probability > 0.2) && (box.probability > prob))
     {
       prob = box.probability;
       ROS_INFO("DETECTED TRUE");
@@ -67,10 +66,10 @@ const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
       px = (box.xmax + box.xmin) / 2;
       py = (box.ymax + box.ymin) / 2;
 
-      dist = img_ptr_depth->image.at<float>(cv::Point(px, py))*0.001f;
-
-      if ( isnan(dist) )
+      dist = img_ptr_depth->image.at<float>(cv::Point(px, py));  // *0.001f;
+      if (isnan(dist))
         dist = 0;
+
       ROS_INFO("person_x: %d \t person_z: %f\n", px, dist);
     }
   }
@@ -87,7 +86,7 @@ PercievePerson::halt()
 BT::NodeStatus
 PercievePerson::tick()
 {
-  if ( !detected )
+  if (!detected)
   {
     counter++;
   }
@@ -100,7 +99,7 @@ PercievePerson::tick()
     counter = 0;
     return BT::NodeStatus::SUCCESS;
   }
-  else if ( ( !detected ) && ( counter >= 3 ) )
+  else if ((!detected) && (counter >= 3))
   {
     // Jumps to turn
     // ROS_INFO("Detected: FALSE");
@@ -111,7 +110,6 @@ PercievePerson::tick()
     return BT::NodeStatus::RUNNING;
   }
 }
-
 }  // namespace visual_behavior
 
 #include "behaviortree_cpp_v3/bt_factory.h"
