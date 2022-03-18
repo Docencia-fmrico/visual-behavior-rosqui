@@ -38,7 +38,7 @@ PercieveBall::halt()
 
 BT::NodeStatus
 PercieveBall::tick()
-{   
+{
     ROS_INFO("PERCIEVE BALL TICK");
     tf2_ros::Buffer buffer_;
     tf2_ros::TransformListener listener(buffer_);
@@ -66,7 +66,7 @@ PercieveBall::tick()
         if (dist > 2)
           dist = 2;
 
-        vel_msgs.linear.x = dist - 1.0; 
+        vel_msgs.linear.x = dist - 1.0;
         vel_msgs.angular.z = angle;
 
         setOutput("ball_x", dist);
@@ -79,7 +79,6 @@ PercieveBall::tick()
       ROS_ERROR("%s", error.c_str());
       return BT::NodeStatus::FAILURE;
     }
-
 }
 
 }  // namespace visual_behavior

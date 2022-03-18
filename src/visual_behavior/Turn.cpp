@@ -14,6 +14,7 @@
 // limitations under the License.
 
 #include "visual_behavior/Turn.h"
+#include <string>
 
 namespace visual_behavior
 {
@@ -21,7 +22,7 @@ namespace visual_behavior
 Turn::Turn(const std::string& name)
 : BT::ActionNodeBase(name, {})
 {
-    pub_vel_ = nh_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity",100);
+    pub_vel_ = nh_.advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity", 100);
 }
 
 void
@@ -33,14 +34,13 @@ Turn::halt()
 BT::NodeStatus
 Turn::tick()
 {
-  //ROS_INFO("Turn tick");
+  // ROS_INFO("Turn tick");
   geometry_msgs::Twist cmd;
 
   cmd.linear.x = 0;
   cmd.angular.z = TURN_VEL;
 
   pub_vel_.publish(cmd);
-  
   return BT::NodeStatus::FAILURE;
 }
 

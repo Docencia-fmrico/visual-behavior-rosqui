@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "visual_behavior/FollowBall.h"
+#include <string>
 
 namespace visual_behavior
 {
@@ -36,7 +37,6 @@ FollowBall::tick()
 
     std::string ball_x = getInput<std::string>("ball_x").value();
     std::string ball_z = getInput<std::string>("ball_z").value();
-    
     int X = std::stoi(ball_x.c_str());
     double Z = std::stod(ball_z.c_str());
 

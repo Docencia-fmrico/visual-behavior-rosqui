@@ -17,6 +17,7 @@
 
 #include "behaviortree_cpp_v3/behavior_tree.h"
 #include "behaviortree_cpp_v3/bt_factory.h"
+#include "visual_behavior/PIDController.h"
 
 #include <string>
 #include <iostream>
@@ -44,6 +45,8 @@ class FollowPerson : public BT::ActionNodeBase
   protected:
     ros::NodeHandle nh_;
     ros::Publisher pub_vel_;
+    PIDController linear_pid_;
+    PIDController angular_pid_;
 };
 
 }  // namespace visual_behavior
