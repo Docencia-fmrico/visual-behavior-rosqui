@@ -127,7 +127,7 @@ For this task we had to install the following packages:
 
 This is the tree we have decided to use:
  
-<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/bt_fp.gif" align="center"
+<img src="https://github.com/Docencia-fmrico/visual-behavior-rosqui/blob/main/images/bt_fb.gif" align="center"
 alt="Follow ball bt" width="600" height="600">
 
 And this is how it looks like in <a href="https://github.com/BehaviorTree/Groot">Groot</a>:
