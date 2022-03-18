@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<root main_tree_to_execute="BehaviorTree">
+    <!-- ////////// -->
+    <BehaviorTree ID="BehaviorTree">
+        <ReactiveSequence>
+            <Fallback>
+                <Action ID="PercieveBall" ball_x="{ball_x}" ball_z="{ball_z}"/>
+                <Action ID="Turn"/>
+            </Fallback>
+            <Action ID="FollowBall" ball_x="{ball_x}" ball_z="{ball_z}"/>
+        </ReactiveSequence>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <TreeNodesModel>
+        <Action ID="FollowBall">
+            <output_port name="ball_x">Mid X of BB</output_port>
+            <output_port name="ball_z">Depth of Ball</output_port>
+        </Action>
+        <Action ID="PercieveBall">
+            <input_port name="ball_x">Mid X of BB</input_port>
+            <input_port name="ball_z">Depth of Ball</input_port>
+        </Action>
+        <Action ID="Turn"/>
+    </TreeNodesModel>
+    <!-- ////////// -->
+</root>
+
