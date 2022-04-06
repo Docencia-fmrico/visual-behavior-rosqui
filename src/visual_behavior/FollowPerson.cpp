@@ -34,29 +34,31 @@ FollowPerson::halt()
 BT::NodeStatus
 FollowPerson::tick()
 {
-    ROS_INFO("FollowPerson tick");
+  int counter = 0;
+  ROS_INFO("FollowPerson tick");
 
-    std::string person_x = getInput<std::string>("person_x").value();
-    std::string person_z = getInput<std::string>("person_z").value();
+  std::string person_x = getInput<std::string>("person_x").value();
+  std::string person_z = getInput<std::string>("person_z").value();
 
-    ROS_INFO("X:%s Z:%s", person_x.c_str(), person_z.c_str());
-    int X = std::stoi(person_x.c_str());
-    double Z = std::stod(person_z.c_str());
+  ROS_INFO("x:%s z:%s", person_x.c_str(), person_z.c_str());
+  int x = std::stoi(person_x.c_str());
+  double z = std::stod(person_z.c_str());
 
-    geometry_msgs::Twist cmd;
-    angular_pid_.set_pid(0.4, 0.05, 0.55);
-    linear_pid_.set_pid(0.4, 0.05, 0.55);
-    if (X > 320)
-    {
-      X *= -X;
-    }
-      cmd.angular.z = angular_pid_.get_output(X);
-      cmd.linear.x = linear_pid_.get_output(Z-1);
+  geometry_msgs::Twist cmd;
+  angular_pid_.set_pid(0.4, 0.05, 0.55);
+  linear_pid_.set_pid(0.4, 0.05, 0.55);
+  if (x > 320)
+  {
+    cmd.angular.z = -angular_pid_.get_output(x - 320);
+  } else {
+    cmd.angular.z = angular_pid_.get_output(320 - x);
+  }
+  cmd.linear.x = linear_pid_.get_output(z-1);
 
-      ROS_INFO("X: %d = %lf\t Z: %lf = %lf", X, cmd.angular.z, Z-1, cmd.linear.x);
-    pub_vel_.publish(cmd);
+  ROS_INFO("x: %d = %lf\t z: %lf = %lf", x, cmd.angular.z, z-1, cmd.linear.x);
+  pub_vel_.publish(cmd);
 
-    return BT::NodeStatus::SUCCESS;
+  return BT::NodeStatus::SUCCESS;
 }
 
 }  // namespace visual_behavior

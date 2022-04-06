@@ -58,7 +58,7 @@ const darknet_ros_msgs::BoundingBoxesConstPtr& boxes)
   for (const auto & box : boxes->bounding_boxes)
   {
     ROS_INFO("PROB: %f", box.probability);
-    if ((box.probability > 0.75) && (box.probability > prob))
+    if ((box.probability > 0.65) && (box.probability > prob))
     {
       prob = box.probability;
       ROS_INFO("DETECTED TRUE");

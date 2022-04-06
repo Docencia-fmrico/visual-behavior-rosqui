@@ -45,7 +45,7 @@ PercieveBall::tick()
     geometry_msgs::TransformStamped bf2ball_msg;
     tf2::Stamped<tf2::Transform> bf2ball;
     std::string error;
-    if (buffer_.canTransform("base_footprint", "object/0", ros::Time(0), ros::Duration(0.1), &error))
+    if (buffer_.canTransform("base_footprint", "object/0", ros::Time(0), ros::Duration(0.5), &error))
     {
       bf2ball_msg = buffer_.lookupTransform("base_footprint", "object/0", ros::Time(0));
 

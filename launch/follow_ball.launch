@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <launch>
 
-  <node pkg="visual_behavior" type="follow_ball_node" name="Follow_Ball" output="screen" launch-prefix="xterm -e"/>
+  <!--node pkg="visual_behavior" type="follow_ball_node" name="Follow_Ball" output="screen" launch-prefix="xterm -e"/-->
   
   <node pkg="cameras_cpp" type="nodo_camera" name="cameras_cpp"/>
   <node pkg="cameras_cpp" type="nodo_rgbd_filter" name="cameras_rgbd_filter_cpp"/>
