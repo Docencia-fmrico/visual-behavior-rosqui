@@ -54,7 +54,7 @@ link_directories(
 	${PCL_LIBRARY_DIRS}
 )
 
-add_library(visual_behavior src/PIDController.cpp)
+add_library(visual_behavior src/visual_behavior/PIDController.cpp)
 add_library(asr_follow_person_bt_node SHARED src/visual_behavior/FollowPerson.cpp)
 add_library(asr_turn_bt_node SHARED src/visual_behavior/Turn.cpp)
 add_library(asr_percieve_person_bt_node SHARED src/visual_behavior/PercievePerson.cpp)
