@@ -26,6 +26,8 @@
 #include <sensor_msgs/Image.h>
 #include <darknet_ros_msgs/BoundingBoxes.h>
 
+#include "ros/ros.h"
+
 #include <string>
 
 namespace visual_behavior
@@ -55,8 +57,9 @@ class PercievePerson : public BT::ActionNodeBase
     typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::Image,
     darknet_ros_msgs::BoundingBoxes> MySyncPolicy_bbx;
     message_filters::Synchronizer<MySyncPolicy_bbx> sync_bbx;
+    ros::Time initial_ts_;
     bool detected;
-    int counter;
+    bool first;
 };
 
 }  // namespace visual_behavior

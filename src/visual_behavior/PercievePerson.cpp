@@ -30,8 +30,8 @@ PercievePerson::PercievePerson(const std::string& name, const BT::NodeConfigurat
   bbx_sub(nh_, "/darknet_ros/bounding_boxes", 1),
   sync_bbx(MySyncPolicy_bbx(10), image_depth_sub, bbx_sub)
 {
-  counter = 0;
   detected = false;
+  first = true;
   sync_bbx.registerCallback(boost::bind(&PercievePerson::callback_bbx, this, _1, _2));
 }
 
@@ -86,20 +86,24 @@ PercievePerson::halt()
 BT::NodeStatus
 PercievePerson::tick()
 {
-  if (!detected)
+  if (first)
   {
-    counter++;
+    initial_ts_ = ros::Time::now();
+    first = false;
   }
 
-  ROS_INFO("counter: %d", counter);
+  double current_ts_ = (ros::Time::now() - initial_ts_).toSec();
+
+  ROS_INFO("current_ts_: %f", current_ts_);
 
   if ( detected )
   {
     // Jumps to FollowPerson
-    counter = 0;
+    first = true;
+    detected = false;
     return BT::NodeStatus::SUCCESS;
   }
-  else if ((!detected) && (counter >= 3))
+  else if ((!detected) && (current_ts_ > 2.0))
   {
     // Jumps to turn
     // ROS_INFO("Detected: FALSE");

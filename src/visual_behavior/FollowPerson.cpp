@@ -34,7 +34,6 @@ FollowPerson::halt()
 BT::NodeStatus
 FollowPerson::tick()
 {
-  int counter = 0;
   ROS_INFO("FollowPerson tick");
 
   std::string person_x = getInput<std::string>("person_x").value();
